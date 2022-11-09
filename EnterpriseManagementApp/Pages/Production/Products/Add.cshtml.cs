@@ -22,7 +22,7 @@ namespace EnterpriseManagementApp.Pages.Production.Products
         {
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
             var productionItem = new ProductionItem()
             {
@@ -41,6 +41,7 @@ namespace EnterpriseManagementApp.Pages.Production.Products
             };
             emaDbContext.ProductionItems.Add(productionItem);
             emaDbContext.SaveChanges();
+            return RedirectToPage("/Production/Products/List");
         }
     }
 }
