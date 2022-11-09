@@ -2,6 +2,7 @@ using EnterpriseManagementApp.Data;
 using EnterpriseManagementApp.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace EnterpriseManagementApp.Pages.Production.Products
 {
@@ -14,9 +15,9 @@ namespace EnterpriseManagementApp.Pages.Production.Products
         {
             this.emaDbContext = emaDbContext;
         }
-        public void OnGet()
+        public async Task OnGet()
         {
-            ProductionItems = emaDbContext.ProductionItems.ToList();
+            ProductionItems = await emaDbContext.ProductionItems.ToListAsync();
         }
     }
 }

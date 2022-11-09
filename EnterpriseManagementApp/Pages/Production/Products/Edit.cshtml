@@ -8,7 +8,9 @@
     </div>
 </div>
 
-<div>
+@if(Model.ProductionItem != null)
+{
+    <div>
     <div class="container w-50">
         <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
             <div class="mb-3">
@@ -79,4 +81,12 @@
 
         </form>
     </div>
-</div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <p>Product not found.</p>
+    </div>
+}
+

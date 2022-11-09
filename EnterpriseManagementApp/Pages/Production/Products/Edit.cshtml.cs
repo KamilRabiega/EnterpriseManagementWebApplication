@@ -16,14 +16,14 @@ namespace EnterpriseManagementApp.Pages.Production.Products
             this.emaDbContext = emaDbContext;
         }
 
-        public void OnGet(Guid id)
+        public async Task OnGet(Guid id)
         {
-            ProductionItem = emaDbContext.ProductionItems.Find(id); //Passing the id from razorpage
+            ProductionItem = await emaDbContext.ProductionItems.FindAsync(id); //Passing the id from razorpage
         }
 
-        public IActionResult OnPostUpdate()
+        public async Task<IActionResult> OnPostUpdate()
         {
-            var existingProductionItem = emaDbContext.ProductionItems.Find(ProductionItem.Id);
+            var existingProductionItem = await emaDbContext.ProductionItems.FindAsync(ProductionItem.Id);
 
             if (existingProductionItem != null)
             {
@@ -38,18 +38,18 @@ namespace EnterpriseManagementApp.Pages.Production.Products
                 existingProductionItem.ReadyToPickUp= ProductionItem.ReadyToPickUp;
             }
 
-            emaDbContext.SaveChanges();
+            await emaDbContext.SaveChangesAsync();
             return RedirectToPage("/Production/Products/List");
         }
 
-        public IActionResult OnPostDelete()
+        public async Task<IActionResult> OnPostDelete()
         {
-            var existingProductionItem = emaDbContext.ProductionItems.Find(ProductionItem.Id);
+            var existingProductionItem = await emaDbContext.ProductionItems.FindAsync(ProductionItem.Id);
 
             if (existingProductionItem != null)
             {
                 emaDbContext.ProductionItems.Remove(existingProductionItem);
-                emaDbContext.SaveChanges();
+                await emaDbContext.SaveChangesAsync();
 
                 return RedirectToPage("/Production/Products/List");
             }

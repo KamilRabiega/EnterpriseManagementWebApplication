@@ -22,7 +22,7 @@ namespace EnterpriseManagementApp.Pages.Production.Products
         {
         }
 
-        public IActionResult OnPost()
+        public async Task<IActionResult> OnPost()
         {
             var productionItem = new ProductionItem()
             {
@@ -39,8 +39,9 @@ namespace EnterpriseManagementApp.Pages.Production.Products
                 AdditionalInformation = AddProductionItemRequest.AdditionalInformation,
                 ReadyToPickUp = AddProductionItemRequest.ReadyToPickUp,
             };
-            emaDbContext.ProductionItems.Add(productionItem);
-            emaDbContext.SaveChanges();
+            await emaDbContext.ProductionItems.AddAsync(productionItem);
+            await emaDbContext.SaveChangesAsync();
+
             return RedirectToPage("/Production/Products/List");
         }
     }
