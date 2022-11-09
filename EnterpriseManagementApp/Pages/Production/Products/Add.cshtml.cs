@@ -1,6 +1,7 @@
 using EnterpriseManagementApp.Data;
 using EnterpriseManagementApp.Entities;
 using EnterpriseManagementApp.Entities.ViewModels;
+using EnterpriseManagementApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -8,14 +9,14 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 {
     public class AddModel : PageModel
     {
-        private readonly EmaDbContext emaDbContext;
+        private readonly IProductionItemRepository productionItemRepository;
 
         [BindProperty]
         public AddProductionItem AddProductionItemRequest { get; set; }
 
-        public AddModel(EmaDbContext emaDbContext)
+        public AddModel(IProductionItemRepository productionItemRepository)
         {
-            this.emaDbContext = emaDbContext;
+            this.productionItemRepository = productionItemRepository;
         }
 
         public void OnGet()
@@ -39,8 +40,8 @@ namespace EnterpriseManagementApp.Pages.Production.Products
                 AdditionalInformation = AddProductionItemRequest.AdditionalInformation,
                 ReadyToPickUp = AddProductionItemRequest.ReadyToPickUp,
             };
-            await emaDbContext.ProductionItems.AddAsync(productionItem);
-            await emaDbContext.SaveChangesAsync();
+            
+            await productionItemRepository.AddAsync(productionItem);
 
             return RedirectToPage("/Production/Products/List");
         }

@@ -1,4 +1,5 @@
 using EnterpriseManagementApp.Data;
+using EnterpriseManagementApp.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +10,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<EmaDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("EmaDbConnectionString")));
+
+builder.Services.AddScoped<IProductionItemRepository, ProductionItemRepository>(); //Inject the implementation of IProductionItemRepository
 
 var app = builder.Build();
 
