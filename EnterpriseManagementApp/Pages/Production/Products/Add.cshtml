@@ -15,52 +15,52 @@
 
             <div class="mb-3">
                 <label for="type" class="form-label">Type</label>
-                <input type="text" class="form-control" id="type">
+                <input type="text" class="form-control" id="type" asp-for="AddProductionItemRequest.Type">
             </div>
             <div class="mb-3">
                 <label for="material" class="form-label">Material</label>
-                <input type="text" class="form-control" id="material">
+                <input type="text" class="form-control" id="material" asp-for="AddProductionItemRequest.Material">
             </div>
             <div class="mb-3">
-                <label for="thickness" class="form-label">Thickness</label>
-                <input type="number" class="form-control" id="thickness">
+                <label for="thickness" class="form-label">Thickness (millimeters)</label>
+                <input type="number" min="0" class="form-control" id="thickness" asp-for="AddProductionItemRequest.Thickness">
             </div>
             <div class="mb-3">
-                <label for="length" class="form-label">Length</label>
-                <input type="number" class="form-control" id="length">
+                <label for="length" class="form-label">Length (millimeters)</label>
+                <input type="number" min="0" class="form-control" id="length" asp-for="AddProductionItemRequest.Length">
             </div>
             <div class="mb-3">
-                <label for="diameter" class="form-label">Diameter</label>
-                <input type="number" class="form-control" id="diameter">
+                <label for="diameter" class="form-label">Diameter (millimeters)</label>
+                <input type="number" min="0" class="form-control" id="diameter" asp-for="AddProductionItemRequest.Diameter">
             </div>
             <div class="mb-3">
                 <label for="quantityPcs" class="form-label">Quantity (pcs)</label>
-                <input type="number" class="form-control" id="quantityPcs">
+                <input type="number" min="0" class="form-control" id="quantityPcs" asp-for="AddProductionItemRequest.QuantityPCS">
             </div>
             <div class="mb-3">
                 <label for="quantityPallets" class="form-label">Quantity (pallets)</label>
-                <input type="number" class="form-control" id="quantityPallets">
+                <input type="number" min="0" class="form-control" id="quantityPallets" asp-for="AddProductionItemRequest.QuantityPallets">
             </div>
             <!-- this will happen automatically from the currently logged in user in the future-->
             <div class="mb-3">
                 <label for="hallNumber" class="form-label">Hall number</label>
-                <input type="number" class="form-control" id="hallNumber">
+                <input type="number" min="0" class="form-control" id="hallNumber" asp-for="AddProductionItemRequest.HallNumber">
             </div>
             <!-- this will happen automatically from the currently logged in user in the future-->
             <div class="mb-3">
                 <label for="foreman" class="form-label">Foreman</label>
-                <input type="number" class="form-control" id="foreman">
+                <input type="number" min="0" class="form-control" id="foreman" asp-for="AddProductionItemRequest.Foreman">
             </div>
             <div class="mb-3">
                 <label for="productionDate" class="form-label">Production Date</label>
-                <input type="date" class="form-control" id="productionDate">
+                <input type="date" class="form-control" id="productionDate" asp-for="AddProductionItemRequest.ProductionDate">
             </div>
             <div class="mb-3">
                 <label for="additionalInformation" class="form-label">Additional information</label>
-                <textarea class="form-control" id="additionalInformation"></textarea>
+                <textarea class="form-control" id="additionalInformation" asp-for="AddProductionItemRequest.AdditionalInformation"></textarea>
             </div>
             <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" id="isReadyToPickUp"/>
+                <input class="form-check-input" type="checkbox" id="isReadyToPickUp"  asp-for="AddProductionItemRequest.ReadyToPickUp"/>
                 <label class="form-check-label" for="isReadyToPickUp">
                     Is ready to pick up
                 </label>
