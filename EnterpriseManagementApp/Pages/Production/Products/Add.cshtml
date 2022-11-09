@@ -1,0 +1,77 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.Production.Products.AddModel
+@{
+}
+
+<div class="bg-light bg-opacity-10 py-2 mb-2">
+    <div class="container text-center">
+        <h1>Add finished product</h1>
+    </div>
+</div>
+
+<div>
+    <div class="container w-50">
+        <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <input type="text" class="form-control" id="type">
+            </div>
+            <div class="mb-3">
+                <label for="material" class="form-label">Material</label>
+                <input type="text" class="form-control" id="material">
+            </div>
+            <div class="mb-3">
+                <label for="thickness" class="form-label">Thickness</label>
+                <input type="number" class="form-control" id="thickness">
+            </div>
+            <div class="mb-3">
+                <label for="length" class="form-label">Length</label>
+                <input type="number" class="form-control" id="length">
+            </div>
+            <div class="mb-3">
+                <label for="diameter" class="form-label">Diameter</label>
+                <input type="number" class="form-control" id="diameter">
+            </div>
+            <div class="mb-3">
+                <label for="quantityPcs" class="form-label">Quantity (pcs)</label>
+                <input type="number" class="form-control" id="quantityPcs">
+            </div>
+            <div class="mb-3">
+                <label for="quantityPallets" class="form-label">Quantity (pallets)</label>
+                <input type="number" class="form-control" id="quantityPallets">
+            </div>
+            <!-- this will happen automatically from the currently logged in user in the future-->
+            <div class="mb-3">
+                <label for="hallNumber" class="form-label">Hall number</label>
+                <input type="number" class="form-control" id="hallNumber">
+            </div>
+            <!-- this will happen automatically from the currently logged in user in the future-->
+            <div class="mb-3">
+                <label for="foreman" class="form-label">Foreman</label>
+                <input type="number" class="form-control" id="foreman">
+            </div>
+            <div class="mb-3">
+                <label for="productionDate" class="form-label">Production Date</label>
+                <input type="date" class="form-control" id="productionDate">
+            </div>
+            <div class="mb-3">
+                <label for="additionalInformation" class="form-label">Additional information</label>
+                <textarea class="form-control" id="additionalInformation"></textarea>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="checkbox" id="isReadyToPickUp"/>
+                <label class="form-check-label" for="isReadyToPickUp">
+                    Is ready to pick up
+                </label>
+            </div>
+
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
