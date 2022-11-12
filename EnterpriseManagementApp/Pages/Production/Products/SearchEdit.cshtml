@@ -1,0 +1,91 @@
+﻿@page "{id:Guid}"
+@model EnterpriseManagementApp.Pages.Production.Products.SearchEditModel
+@{
+}
+<div class="bg-light bg-opacity-10 py-2 mb-2">
+    <div class="container text-center">
+        <h1>Edit found product</h1>
+    </div>
+</div>
+
+@if (Model.ProductionItem != null)
+{
+    <div>
+        <div class="container w-50">
+            <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
+                <div class="mb-3">
+                    <label for="id" class="form-label">Id</label>
+                    <input type="text" class="form-control" id="id" asp-for="ProductionItem.Id" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="type" class="form-label">Type</label>
+                    <input type="text" class="form-control" id="type" asp-for="ProductionItem.Type">
+                </div>
+                <div class="mb-3">
+                    <label for="material" class="form-label">Material</label>
+                    <input type="text" class="form-control" id="material" asp-for="ProductionItem.Material">
+                </div>
+                <div class="mb-3">
+                    <label for="thickness" class="form-label">Thickness (millimeters)</label>
+                    <input type="number" min="0" class="form-control" id="thickness" asp-for="ProductionItem.Thickness">
+                </div>
+                <div class="mb-3">
+                    <label for="length" class="form-label">Length (millimeters)</label>
+                    <input type="number" min="0" class="form-control" id="length" asp-for="ProductionItem.Length">
+                </div>
+                <div class="mb-3">
+                    <label for="diameter" class="form-label">Diameter (millimeters)</label>
+                    <input type="number" min="0" class="form-control" id="diameter" asp-for="ProductionItem.Diameter">
+                </div>
+                <div class="mb-3">
+                    <label for="quantityPcs" class="form-label">Quantity (pcs)</label>
+                    <input type="number" min="0" class="form-control" id="quantityPcs" asp-for="ProductionItem.QuantityPCS">
+                </div>
+                <div class="mb-3">
+                    <label for="quantityPallets" class="form-label">Quantity (pallets)</label>
+                    <input type="number" min="0" class="form-control" id="quantityPallets" asp-for="ProductionItem.QuantityPallets">
+                </div>
+                <!-- this will happen automatically from the currently logged in user in the future-->
+                <div class="mb-3">
+                    <label for="hallNumber" class="form-label">Hall number</label>
+                    <input type="number" min="0" class="form-control" id="hallNumber" asp-for="ProductionItem.HallNumber">
+                </div>
+                <!-- this will happen automatically from the currently logged in user in the future-->
+                <div class="mb-3">
+                    <label for="foreman" class="form-label">Foreman</label>
+                    <input type="number" min="0" class="form-control" id="foreman" asp-for="ProductionItem.Foreman">
+                </div>
+                <div class="mb-3">
+                    <label for="productionDate" class="form-label">Production Date</label>
+                    <input type="date" class="form-control" id="productionDate" asp-for="ProductionItem.ProductionDate">
+                </div>
+                <div class="mb-3">
+                    <label for="additionalInformation" class="form-label">Additional information</label>
+                    <textarea class="form-control" id="additionalInformation" asp-for="ProductionItem.AdditionalInformation"></textarea>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="isReadyToPickUp" asp-for="ProductionItem.ReadyToPickUp" />
+                    <label class="form-check-label" for="isReadyToPickUp">
+                        Is ready to pick up
+                    </label>
+                </div>
+
+                <div class="mb-3">
+                    <button class="btn btn-primary" style="width: 78px;" type="submit" asp-page-handler="Update">
+                        Submit
+                    </button>
+                    <button class="btn btn-danger" style="margin-left: 8px; width: 78px;" type="submit" asp-page-handler="Delete">
+                        Delete
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <p>Product not found.</p>
+    </div>
+}

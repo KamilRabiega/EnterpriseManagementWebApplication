@@ -1,18 +1,19 @@
-﻿@page
-@model EnterpriseManagementApp.Pages.Production.Products.ListModel
+﻿@page "{id:Guid}"
+@model EnterpriseManagementApp.Pages.Production.Products.SearchResultModel
 @{
 }
+
 <div class="bg-light bg-opacity-10 py-2 mb-2">
     <div class="container text-center">
-        <h1>All already producted items</h1>
+        <h1>Search results</h1>
     </div>
 </div>
 
 <!-- Here is place for notifications. -->
 
-
-@if (Model.ProductionItems != null && Model.ProductionItems.Any())
+@if (Model.ProductionItem != null)
 {
+    var item = Model.ProductionItem;
     <div class="container" style="width: 65%;">
         <table class="table text-center">
             <thead>
@@ -27,20 +28,17 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.ProductionItems)
-                {
-                    <tr>
-                        <td>@item.Id</td>
-                        <td>@item.Type</td>
-                        <td>@item.Length</td>
-                        <td>@item.Diameter</td>
-                        <td>@item.QuantityPallets</td>
-                        <td>@item.ReadyToPickUp</td>
-                        <td>
-                            <a class="btn btn-primary" href="/Production/Products/Edit/@item.Id">Show</a>
-                        </td>
-                    </tr>
-                }
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Type</td>
+                    <td>@item.Length</td>
+                    <td>@item.Diameter</td>
+                    <td>@item.QuantityPallets</td>
+                    <td>@item.ReadyToPickUp</td>
+                    <td>
+                        <a class="btn btn-primary" href="/Production/Products/SearchEdit/@item.Id">Show</a>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>

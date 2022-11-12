@@ -10,17 +10,14 @@
 
 <div>
     <div class="container w-50 text-center">
-
         <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
             <div class="mb-3">
-                <label for="SearchString" class="form-label">Search by identificator</label>
-                <input type="text" class="form-control" id="SearchString">
+                <label class="form-label">Search by identificator</label>
+                <input type="search" class="form-control" asp-for="SearchText" />
             </div>
             <div class="mb-3">
                 <button class="btn btn-primary" type="submit">Submit</button>
             </div>
         </form>
-        
-        
     </div>
 </div>
