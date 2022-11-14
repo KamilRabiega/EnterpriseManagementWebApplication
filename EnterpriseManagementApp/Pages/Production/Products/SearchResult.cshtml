@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<!-- Here is place for notifications. -->
+<partial name="_Notification">
 
 @if (Model.ProductionItem != null)
 {
@@ -46,8 +46,10 @@
 else
 {
     <div class="container text-center pt-5">
-        <p>
-            There is no products to show you.
+        <p style="font-size: 20px;">
+            There are no products with that identificator, 
+            <a href="/Production/Products/Search" class="link-dark">search again</a>
         </p>
+            
     </div>
 }

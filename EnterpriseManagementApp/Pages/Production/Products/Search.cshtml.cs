@@ -12,6 +12,10 @@ namespace EnterpriseManagementApp.Pages.Production.Products
     {
         [BindProperty]
         public string? SearchText { get; set; }
+        private bool TryParse(string? searchText, out Guid result)
+        {
+            throw new NotImplementedException();
+        }
 
         public void OnGet()
         {
@@ -19,15 +23,21 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 
         public IActionResult OnPost()
         {
-            if (!string.IsNullOrEmpty(SearchText))
+            var isValid = Guid.TryParse(SearchText, out Guid result);
+            if(isValid == true)
             {
                 return Redirect("/Production/Products/SearchResult/" + SearchText);
             }
             else
             {
-                return Redirect("/Index");
+                ViewData["Notification"] = new Notification
+                {
+                    Message = "You must use GUID type of ID.",
+                    Type = Enums.NotificationType.Error
+                };
+                return Page();
             }
         }
-
+       
     }
 }

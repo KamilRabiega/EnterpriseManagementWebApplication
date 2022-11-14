@@ -8,7 +8,7 @@
     </div>
 </div>
 
-<!-- Here is place for notifications. -->
+<partial name="_Notification">
 
 
 @if (Model.ProductionItems != null && Model.ProductionItems.Any())
@@ -49,7 +49,7 @@ else
 {
     <div class="container text-center pt-5">
         <p>
-            There is no products to show you.
+            There are no products to show
         </p>
     </div>
 }

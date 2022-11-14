@@ -4,6 +4,7 @@ using EnterpriseManagementApp.Entities.ViewModels;
 using EnterpriseManagementApp.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Text.Json;
 
 namespace EnterpriseManagementApp.Pages.Production.Products
 {
@@ -42,6 +43,14 @@ namespace EnterpriseManagementApp.Pages.Production.Products
             };
             
             await productionItemRepository.AddAsync(productionItem);
+
+            var notification = new Notification
+            {
+                Message = "This product was successfully added to database.",
+                Type = Enums.NotificationType.Success
+            };
+
+            TempData["Notification"] = JsonSerializer.Serialize(notification);
 
             return RedirectToPage("/Production/Products/List");
         }
