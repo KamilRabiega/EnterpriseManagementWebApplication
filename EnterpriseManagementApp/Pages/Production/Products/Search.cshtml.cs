@@ -20,7 +20,6 @@ namespace EnterpriseManagementApp.Pages.Production.Products
         public void OnGet()
         {
         }
-
         public IActionResult OnPost()
         {
             var isValid = Guid.TryParse(SearchText, out Guid result);
