@@ -55,6 +55,7 @@ namespace EnterpriseManagementApp.Repositories
                 existingProductionItem.Diameter = productionItem.Diameter;
                 existingProductionItem.QuantityPCS = productionItem.QuantityPCS;
                 existingProductionItem.QuantityPallets = productionItem.QuantityPallets;
+                existingProductionItem.ProductionDate = productionItem.ProductionDate;
                 existingProductionItem.AdditionalInformation = productionItem.AdditionalInformation;
                 existingProductionItem.ReadyToPickUp = productionItem.ReadyToPickUp;
             }

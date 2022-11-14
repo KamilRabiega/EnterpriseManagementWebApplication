@@ -26,6 +26,8 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 
         public async Task<IActionResult> OnPost()
         {
+            DateTime dateTimeNow = DateTime.Now;
+
             var productionItem = new ProductionItem()
             {
                 Type = AddProductionItemRequest.Type,
@@ -37,7 +39,7 @@ namespace EnterpriseManagementApp.Pages.Production.Products
                 QuantityPallets = AddProductionItemRequest.QuantityPallets,
                 HallNumber = AddProductionItemRequest.HallNumber,
                 Foreman = AddProductionItemRequest.Foreman,
-                ProductionDate = AddProductionItemRequest.ProductionDate,
+                ProductionDate = dateTimeNow, //AddProductionItemRequest.ProductionDate,
                 AdditionalInformation = AddProductionItemRequest.AdditionalInformation,
                 ReadyToPickUp = AddProductionItemRequest.ReadyToPickUp,
             };
