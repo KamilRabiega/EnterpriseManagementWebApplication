@@ -1,0 +1,44 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.RegisterModel
+@{
+}
+
+<div class="bg-light bg-opacity-10 py-2 mb-2">
+    <div class="container text-center">
+        <h1>Create a new user</h1>
+    </div>
+</div>
+
+<partial name="_Notification">
+
+<div class="container mx-auto">
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-6">
+            <form method="post">    
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <input type="text" class="form-control" asp-for="RegisterViewModel.Username" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">E-mail</label>
+                    <input type="email" class="form-control" asp-for="RegisterViewModel.Email" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" asp-for="RegisterViewModel.Password" />
+                </div>
+                <label class="form-label">Select a role for the new user</label>
+                <select class="form-select" aria-label="" asp-for="RegisterViewModel.Role">
+                    <option selected value="User">User</option>
+                    <option value="Production">Production</option>
+                    <option value="Magazine">Magazine</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Board">Board</option>
+                </select>
+                <div class="mb-3 mt-3">
+                    <button class="btn btn-primary" type="submit">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
