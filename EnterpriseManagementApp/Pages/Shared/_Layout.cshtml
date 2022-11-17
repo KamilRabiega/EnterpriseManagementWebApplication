@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> signInManager
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -11,8 +14,11 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">EnterpriseManagementApp</a>
+            <div style="padding-left: 40px;" class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">
+                    <img src="~/images/logo-white.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    EnterpriseManagementApp
+                    </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -26,6 +32,28 @@
                             <a class="nav-link text-light" asp-area="" asp-page="/FuncionalityTesting">Testing page</a>
                         </li>
                     </ul>
+                    
+                </div>
+                <div class="d-flex align-items-center">
+
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <div style="vertical-align: middle;" class="mt-2 mb-2 me-3">
+                            <p class="text-light" style="margin: 0 auto;    ">Logged in as @User?.Identity?.Name</p>
+                        </div>
+                        <div class="mt-2 mb-2 me-3">
+                            <a href="/Logout" class="btn btn-primary">Click to log out</a>
+                        </div>
+
+                    }
+                    else
+                    {
+                        <div class="mt-2 mb-2 me-3">
+                            <a href="/Login" class="btn btn-primary">Click to sign in</a>
+                        </div>
+                    }
+
+
                 </div>
             </div>
         </nav>
