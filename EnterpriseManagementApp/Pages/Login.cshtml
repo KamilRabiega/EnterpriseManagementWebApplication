@@ -1,0 +1,33 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.LoginModel
+@{
+}
+
+<div class="bg-light bg-opacity-10 py-2 mb-2">
+    <div class="container text-center">
+        <h1>Login page</h1>
+    </div>
+</div>
+
+<partial name="_Notification">
+
+    <div class="container mx-auto">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Username</label>
+                        <input type="text" placeholder="Type your username.." class="form-control" asp-for="LoginViewModel.Username"/>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Password</label>
+                        <input type="password" placeholder="Type your password.." class="form-control" asp-for="LoginViewModel.Password"/>
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" type="submit">Sign In</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

@@ -1,5 +1,6 @@
 using EnterpriseManagementApp.Data;
 using EnterpriseManagementApp.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,25 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<EmaDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("EmaDbConnectionString")));
+
+builder.Services.AddDbContext<AuthDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("EmaAuthDbConnectionString")));
+
+//Telling application to use Identity and use the User nad Role types, and to use AuthDbContext as their EF store
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AuthDbContext>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    //Default password settings
+    options.Password.RequireDigit = true;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireUppercase = true;
+    options.Password.RequireNonAlphanumeric= true;
+    options.Password.RequiredLength= 6;
+    options.Password.RequiredUniqueChars = 1;
+});
 
 builder.Services.AddScoped<IProductionItemRepository, ProductionItemRepository>(); //Inject the implementation of IProductionItemRepository
 
@@ -28,6 +48,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapRazorPages();
