@@ -97,42 +97,17 @@ namespace EnterpriseManagementApp.Data
 
             builder.Entity<IdentityUser>().HasData(adminUser);
 
-            //Add all roles for admin 
+            //Add role for admin 
 
-            var identityAdminRoles = new List<IdentityUserRole<string>>()
+            var identityAdminRole = new List<IdentityUserRole<string>>()
             {
                 new IdentityUserRole<string>
                 {
                     RoleId= adminRoleId,
                     UserId= adminId,
                 },
-                new IdentityUserRole<string>
-                {
-                    RoleId= userRoleId,
-                    UserId= adminId,
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId= boardRoleId,
-                    UserId= adminId,
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId= financeRoleId,
-                    UserId= adminId,
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId= magazineRoleId,
-                    UserId= adminId,
-                },
-                new IdentityUserRole<string>
-                {
-                    RoleId= productionRoleId,
-                    UserId= adminId,
-                },
             };
-            builder.Entity<IdentityUserRole<string>>().HasData(identityAdminRoles);
+            builder.Entity<IdentityUserRole<string>>().HasData(identityAdminRole);
         }
 
         
