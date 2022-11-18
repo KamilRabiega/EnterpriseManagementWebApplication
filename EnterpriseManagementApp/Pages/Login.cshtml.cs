@@ -1,4 +1,5 @@
 using EnterpriseManagementApp.Entities.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -8,13 +9,15 @@ namespace EnterpriseManagementApp.Pages
     public class LoginModel : PageModel
     {
         private readonly SignInManager<IdentityUser> signInManager;
+        private readonly UserManager<IdentityUser> userManager;
 
         [BindProperty]
         public Login LoginViewModel { get; set; }
 
-        public LoginModel(SignInManager<IdentityUser> signInManager)
+        public LoginModel(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
         {
             this.signInManager = signInManager;
+            this.userManager = userManager;
         }
 
         public void OnGet()
