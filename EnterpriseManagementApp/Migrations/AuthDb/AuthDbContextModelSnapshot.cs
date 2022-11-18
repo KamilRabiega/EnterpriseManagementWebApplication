@@ -187,15 +187,15 @@ namespace EnterpriseManagementApp.Migrations.AuthDb
                         {
                             Id = "a2918c9e-cc63-4d1e-8d90-647b4ba66561",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3fcf02eb-3e95-4015-aef0-e4de04a8f5d0",
+                            ConcurrencyStamp = "e54d185a-85d1-44da-bcf2-988e46041bd8",
                             Email = "admin@emapp.com",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAPP.COM",
                             NormalizedUserName = "ADMIN@EMAPP.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGvqIVSfc1vgGlZNrxBMKAsjw/A/lMRoBTovZdUZD2Hsw99rlqAAv43+1tX2HKWJFA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKDDVTNFIu8/7Izscv9ckoiaZe2oNByMzczyriqNhfSeC62RiE/kClRCcvl5SXug2g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "affd16b5-3bff-45a4-9dcf-55656e628738",
+                            SecurityStamp = "a176c1f8-adf4-4430-9b70-1db52322743b",
                             TwoFactorEnabled = false,
                             UserName = "admin@emapp.com"
                         });
@@ -267,6 +267,31 @@ namespace EnterpriseManagementApp.Migrations.AuthDb
                         {
                             UserId = "a2918c9e-cc63-4d1e-8d90-647b4ba66561",
                             RoleId = "f7ab4958-b811-471a-ade0-6b4d59fb356d"
+                        },
+                        new
+                        {
+                            UserId = "a2918c9e-cc63-4d1e-8d90-647b4ba66561",
+                            RoleId = "7c19e5f1-e8ed-49e0-bd6a-0b6aaf411cc9"
+                        },
+                        new
+                        {
+                            UserId = "a2918c9e-cc63-4d1e-8d90-647b4ba66561",
+                            RoleId = "2725d629-db33-4423-adca-27a89f547db4"
+                        },
+                        new
+                        {
+                            UserId = "a2918c9e-cc63-4d1e-8d90-647b4ba66561",
+                            RoleId = "25130d10-ec6c-4023-bda9-e4684f35a55b"
+                        },
+                        new
+                        {
+                            UserId = "a2918c9e-cc63-4d1e-8d90-647b4ba66561",
+                            RoleId = "931f8a9e-0b6e-47e3-a77c-9bc734d99a1e"
+                        },
+                        new
+                        {
+                            UserId = "a2918c9e-cc63-4d1e-8d90-647b4ba66561",
+                            RoleId = "ab2aed5b-2505-4011-b6e3-d7aea499fbb0"
                         });
                 });
 

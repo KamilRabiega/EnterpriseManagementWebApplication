@@ -31,22 +31,6 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequiredUniqueChars = 1;
 });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("useradmin", policy => policy.RequireRole("User", "Admin"));
-    options.AddPolicy("productionadmin", policy => policy.RequireRole("Production", "Admin"));
-    options.AddPolicy("magazineadmin", policy => policy.RequireRole("Magazine", "Admin"));
-    options.AddPolicy("financeadmin", policy => policy.RequireRole("Finance", "Admin"));
-    options.AddPolicy("boardadmin", policy => policy.RequireRole("Board", "Admin"));
-    options.AddPolicy("allusers", policy => policy.RequireRole("User", "Production", "Magazine", "Finance", "Board", "Admin"));
-});
-
-builder.Services.ConfigureApplicationCookie(options => 
-{
-    options.LoginPath = "/Login";
-    options.AccessDeniedPath= "/AccessDenied";
-});
-
 builder.Services.AddScoped<IProductionItemRepository, ProductionItemRepository>(); //Inject the implementation of IProductionItemRepository
 
 var app = builder.Build();

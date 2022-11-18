@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace EnterpriseManagementApp.Pages
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class RegisterModel : PageModel
     {
         private readonly UserManager<IdentityUser> userMaganer;

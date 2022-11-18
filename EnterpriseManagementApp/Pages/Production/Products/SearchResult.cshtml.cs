@@ -1,14 +1,12 @@
 using EnterpriseManagementApp.Entities;
 using EnterpriseManagementApp.Entities.ViewModels;
 using EnterpriseManagementApp.Repositories;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
 namespace EnterpriseManagementApp.Pages.Production.Products
 {
-    [Authorize(Policy = "productionadmin")]
     public class SearchResultModel : PageModel
     {
         private readonly IProductionItemRepository productionItemRepository;
