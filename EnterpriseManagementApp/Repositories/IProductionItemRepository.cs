@@ -4,6 +4,10 @@ namespace EnterpriseManagementApp.Repositories
 {
     public interface IProductionItemRepository
     {
+        Task<IEnumerable<Entities.Type>> GetTypesAsync(); //To get all types of products
+        Task<IEnumerable<Material>> GetMaterialsAsync(); //To get all materials of products
+        Task<IEnumerable<Hall>> GetHallsAsync(); //To get all halls of products
+        Task<IEnumerable<Foreman>> GetForemenAsync(); //To get all foremen of products
         Task<IEnumerable<ProductionItem>> GetAllAsync(); //To get all production items
         Task<ProductionItem> GetAsync(Guid id); //To get a single one item by id
         Task<ProductionItem> AddAsync(ProductionItem productionItem); //To add a single item 

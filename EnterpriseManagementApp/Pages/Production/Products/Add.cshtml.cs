@@ -17,13 +17,22 @@ namespace EnterpriseManagementApp.Pages.Production.Products
         [BindProperty]
         public AddProductionItem AddProductionItemRequest { get; set; }
 
+        public List<Entities.Type> Types { get; set; }
+        public List<Material> Materials { get; set; }
+        public List<Hall> Halls { get; set; }
+        public List<Foreman> Foremen { get; set; }
+
         public AddModel(IProductionItemRepository productionItemRepository)
         {
             this.productionItemRepository = productionItemRepository;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
+            Types = (await productionItemRepository.GetTypesAsync())?.ToList();
+            Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
+            Halls = (await productionItemRepository.GetHallsAsync())?.ToList();
+            Foremen = (await productionItemRepository.GetForemenAsync())?.ToList();
         }
 
         public async Task<IActionResult> OnPost()
@@ -32,16 +41,13 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 
             var productionItem = new ProductionItem()
             {
-                //Type = AddProductionItemRequest.Type,
-                //Material = AddProductionItemRequest.Material,
-                //Thickness = AddProductionItemRequest.Thickness,
-                //Length = AddProductionItemRequest.Length,
-                //Diameter = AddProductionItemRequest.Diameter,
+                TypeId = AddProductionItemRequest.TypeId,
+                MaterialId = AddProductionItemRequest.MaterialId,
                 QuantityPCS = AddProductionItemRequest.QuantityPCS,
                 QuantityPallets = AddProductionItemRequest.QuantityPallets,
-                //HallNumber = AddProductionItemRequest.HallNumber,
-                //Foreman = AddProductionItemRequest.Foreman,
-                ProductionDate = dateTimeNow, //AddProductionItemRequest.ProductionDate,
+                HallId = AddProductionItemRequest.HallId,
+                ForemanId = AddProductionItemRequest.ForemanId,
+                ProductionDate = dateTimeNow,
                 AdditionalInformation = AddProductionItemRequest.AdditionalInformation,
                 ReadyToPickUp = AddProductionItemRequest.ReadyToPickUp,
             };

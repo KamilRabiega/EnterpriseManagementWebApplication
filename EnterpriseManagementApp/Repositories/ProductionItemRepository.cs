@@ -42,6 +42,26 @@ namespace EnterpriseManagementApp.Repositories
             return await emaDbContext.ProductionItems.FindAsync(id);
         }
 
+        public async Task<IEnumerable<Foreman>> GetForemenAsync()
+        {
+            return await emaDbContext.Foremen.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Hall>> GetHallsAsync()
+        {
+            return await emaDbContext.Halls.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Material>> GetMaterialsAsync()
+        {
+            return await emaDbContext.Materials.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Entities.Type>> GetTypesAsync()
+        {
+            return await emaDbContext.Types.ToListAsync();
+        }
+
         public async Task<ProductionItem> UpdateAsync(ProductionItem productionItem)
         {
             var existingProductionItem = await emaDbContext.ProductionItems.FindAsync(productionItem.Id);

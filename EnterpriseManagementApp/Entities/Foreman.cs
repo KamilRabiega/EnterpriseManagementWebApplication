@@ -7,7 +7,7 @@ namespace EnterpriseManagementApp.Entities
         [Key]
         public int Id { get; set; }
         public String UserName { get; set; }
-        public string UserId { get; set; }
+        public string UserSHA { get; set; }
         public List<ProductionItem> ProductionItem { get; set; } = new List<ProductionItem>();
     }
 }
