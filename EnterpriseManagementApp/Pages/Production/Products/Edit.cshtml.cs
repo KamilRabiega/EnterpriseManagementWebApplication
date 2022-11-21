@@ -43,7 +43,7 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 
                 return RedirectToPage("/Production/Products/List");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ViewData["Notification"] = new Notification
                 {

@@ -48,11 +48,11 @@ namespace EnterpriseManagementApp.Repositories
 
             if (existingProductionItem != null)
             {
-                existingProductionItem.Type = productionItem.Type;
-                existingProductionItem.Material = productionItem.Material;
-                existingProductionItem.Thickness = productionItem.Thickness;
-                existingProductionItem.Length = productionItem.Length;
-                existingProductionItem.Diameter = productionItem.Diameter;
+                //existingProductionItem.Type = productionItem.Type;
+                //existingProductionItem.Material = productionItem.Material;
+                //existingProductionItem.Thickness = productionItem.Thickness;
+                //existingProductionItem.Length = productionItem.Length;
+                //existingProductionItem.Diameter = productionItem.Diameter;
                 existingProductionItem.QuantityPCS = productionItem.QuantityPCS;
                 existingProductionItem.QuantityPallets = productionItem.QuantityPallets;
                 existingProductionItem.ProductionDate = productionItem.ProductionDate;

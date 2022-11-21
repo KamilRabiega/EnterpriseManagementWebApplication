@@ -21,24 +21,24 @@
                 </div>
                 <div class="mb-3">
                     <label for="type" class="form-label">Type</label>
-                    <input type="text" class="form-control" id="type" asp-for="ProductionItem.Type">
+                    <input type="text" class="form-control" id="type">
                 </div>
                 <div class="mb-3">
                     <label for="material" class="form-label">Material</label>
-                    <input type="text" class="form-control" id="material" asp-for="ProductionItem.Material">
+                    <input type="text" class="form-control" id="material">
                 </div>
                 <div class="mb-3">
                     <label for="thickness" class="form-label">Thickness (millimeters)</label>
-                    <input type="number" min="0" class="form-control" id="thickness" asp-for="ProductionItem.Thickness">
+                    <input type="number" min="0" class="form-control" id="thickness">
                 </div>
-                <div class="mb-3">
+                @*<div class="mb-3">
                     <label for="length" class="form-label">Length (millimeters)</label>
                     <input type="number" min="0" class="form-control" id="length" asp-for="ProductionItem.Length">
                 </div>
                 <div class="mb-3">
                     <label for="diameter" class="form-label">Diameter (millimeters)</label>
                     <input type="number" min="0" class="form-control" id="diameter" asp-for="ProductionItem.Diameter">
-                </div>
+                </div>*@
                 <div class="mb-3">
                     <label for="quantityPcs" class="form-label">Quantity (pcs)</label>
                     <input type="number" min="0" class="form-control" id="quantityPcs" asp-for="ProductionItem.QuantityPCS">
@@ -50,12 +50,12 @@
                 <!-- this will happen automatically from the currently logged in user in the future-->
                 <div class="mb-3">
                     <label for="hallNumber" class="form-label">Hall number</label>
-                    <input type="number" min="0" class="form-control" id="hallNumber" asp-for="ProductionItem.HallNumber">
+                    <input type="number" min="0" class="form-control" id="hallNumber">
                 </div>
                 <!-- this will happen automatically from the currently logged in user in the future-->
                 <div class="mb-3">
                     <label for="foreman" class="form-label">Foreman</label>
-                    <input type="number" min="0" class="form-control" id="foreman" asp-for="ProductionItem.Foreman">
+                    <input type="number" min="0" class="form-control" id="foreman">
                 </div>
                 <div class="mb-3">
                     <label for="productionDate" class="form-label">Production Date</label>

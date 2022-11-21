@@ -32,15 +32,15 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 
             var productionItem = new ProductionItem()
             {
-                Type = AddProductionItemRequest.Type,
-                Material = AddProductionItemRequest.Material,
-                Thickness = AddProductionItemRequest.Thickness,
-                Length = AddProductionItemRequest.Length,
-                Diameter = AddProductionItemRequest.Diameter,
+                //Type = AddProductionItemRequest.Type,
+                //Material = AddProductionItemRequest.Material,
+                //Thickness = AddProductionItemRequest.Thickness,
+                //Length = AddProductionItemRequest.Length,
+                //Diameter = AddProductionItemRequest.Diameter,
                 QuantityPCS = AddProductionItemRequest.QuantityPCS,
                 QuantityPallets = AddProductionItemRequest.QuantityPallets,
-                HallNumber = AddProductionItemRequest.HallNumber,
-                Foreman = AddProductionItemRequest.Foreman,
+                //HallNumber = AddProductionItemRequest.HallNumber,
+                //Foreman = AddProductionItemRequest.Foreman,
                 ProductionDate = dateTimeNow, //AddProductionItemRequest.ProductionDate,
                 AdditionalInformation = AddProductionItemRequest.AdditionalInformation,
                 ReadyToPickUp = AddProductionItemRequest.ReadyToPickUp,
