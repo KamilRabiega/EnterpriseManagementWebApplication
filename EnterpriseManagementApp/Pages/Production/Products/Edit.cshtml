@@ -21,24 +21,42 @@
                 </div>
                 <div class="mb-3">
                     <label for="type" class="form-label">Type</label>
-                    <input type="text" class="form-control" id="type">
+                        @if (Model.Types != null && Model.Types.Any())
+                        {
+                            <select class="form-select" asp-for="ProductionItem.TypeId">
+                                <option selected value="">Select type..</option>
+                                @foreach (var item in Model.Types)
+                                {
+                                    <option value="@item.Id">@item.Id. @item.Name @item.Diameter/@item.Length/@item.WallThickness/@item.Class</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-select">
+                                <option selected value="">Something went wrong..</option>
+                            </select>
+                        }
                 </div>
                 <div class="mb-3">
                     <label for="material" class="form-label">Material</label>
-                    <input type="text" class="form-control" id="material">
+                        @if (Model.Materials != null && Model.Materials.Any())
+                        {
+                            <select class="form-select" aria-label="" asp-for="ProductionItem.MaterialId">
+                                <option selected value="">Select material..</option>
+                                @foreach (var item in Model.Materials)
+                                {
+                                    <option value="@item.Id">@item.Id. @item.Value</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-select">
+                                <option selected value="">Something went wrong..</option>
+                            </select>
+                        }
                 </div>
-                <div class="mb-3">
-                    <label for="thickness" class="form-label">Thickness (millimeters)</label>
-                    <input type="number" min="0" class="form-control" id="thickness">
-                </div>
-                @*<div class="mb-3">
-                    <label for="length" class="form-label">Length (millimeters)</label>
-                    <input type="number" min="0" class="form-control" id="length" asp-for="ProductionItem.Length">
-                </div>
-                <div class="mb-3">
-                    <label for="diameter" class="form-label">Diameter (millimeters)</label>
-                    <input type="number" min="0" class="form-control" id="diameter" asp-for="ProductionItem.Diameter">
-                </div>*@
                 <div class="mb-3">
                     <label for="quantityPcs" class="form-label">Quantity (pcs)</label>
                     <input type="number" min="0" class="form-control" id="quantityPcs" asp-for="ProductionItem.QuantityPCS">
@@ -50,12 +68,42 @@
                 <!-- this will happen automatically from the currently logged in user in the future-->
                 <div class="mb-3">
                     <label for="hallNumber" class="form-label">Hall number</label>
-                    <input type="number" min="0" class="form-control" id="hallNumber">
+                        @if (Model.Halls != null && Model.Halls.Any())
+                        {
+                            <select class="form-select" aria-label="" asp-for="ProductionItem.HallId">
+                                <option selected value="">Select hall..</option>
+                                @foreach (var item in Model.Halls)
+                                {
+                                        <option value="@item.Id">@item.Id. @item.Value</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-select">
+                                <option selected value="">Something went wrong..</option>
+                            </select>
+                        }
                 </div>
                 <!-- this will happen automatically from the currently logged in user in the future-->
                 <div class="mb-3">
                     <label for="foreman" class="form-label">Foreman</label>
-                    <input type="number" min="0" class="form-control" id="foreman">
+                        @if (Model.Foremen != null && Model.Foremen.Any())
+                        {
+                            <select class="form-select" aria-label="" asp-for="ProductionItem.ForemanId">
+                                <option selected value="">Select foreman..</option>
+                                @foreach (var item in Model.Foremen)
+                                {
+                                    <option value="@item.Id">@item.UserName</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-select">
+                                <option selected value="">Something went wrong..</option>
+                            </select>
+                        }
                 </div>
                 <div class="mb-3">
                     <label for="productionDate" class="form-label">Production Date</label>

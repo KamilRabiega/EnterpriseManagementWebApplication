@@ -5,6 +5,7 @@ using EnterpriseManagementApp.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using System;
 using System.Text.Json;
 
 namespace EnterpriseManagementApp.Pages.Production.Products
@@ -16,6 +17,10 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 
         [BindProperty]
         public ProductionItem ProductionItem { get; set; }
+        public List<Entities.Type> Types { get; set; }
+        public List<Material> Materials { get; set; }
+        public List<Hall> Halls { get; set; }
+        public List<Foreman> Foremen { get; set; }
 
         public EditModel(IProductionItemRepository productionItemRepository)
         {
@@ -25,6 +30,10 @@ namespace EnterpriseManagementApp.Pages.Production.Products
         public async Task OnGet(Guid id)
         {
             ProductionItem = await productionItemRepository.GetAsync(id); //Passing the id from razorpage
+            Types = (await productionItemRepository.GetTypesAsync())?.ToList();
+            Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
+            Halls = (await productionItemRepository.GetHallsAsync())?.ToList();
+            Foremen = (await productionItemRepository.GetForemenAsync())?.ToList();
         }
 
         public async Task<IActionResult> OnPostUpdate()
