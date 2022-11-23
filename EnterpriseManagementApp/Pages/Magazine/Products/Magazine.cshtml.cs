@@ -9,22 +9,26 @@ using System.Text.Json;
 namespace EnterpriseManagementApp.Pages.Magazine.Products
 {
     [Authorize(Policy = "magazineadmin")]
-    public class ProductionListModel : PageModel
+    public class MagazineModel : PageModel
     {
         private readonly IProductionItemRepository productionItemRepository;
 
+        public MagazineModel(IProductionItemRepository productionItemRepository)
+        {
+            this.productionItemRepository = productionItemRepository;
+        }
         public List<ProductionItem> ProductionItems { get; set; }
         public List<Entities.Type> Types { get; set; }
         public List<Material> Materials { get; set; }
         public List<Hall> Halls { get; set; }
         public List<Foreman> Foremen { get; set; }
-        public ProductionListModel(IProductionItemRepository productionItemRepository)
-        {
-            this.productionItemRepository = productionItemRepository;
-        }
-
         public async Task OnGet()
         {
+            Types = (await productionItemRepository.GetTypesAsync())?.ToList();
+            Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
+            Halls = (await productionItemRepository.GetHallsAsync())?.ToList();
+            Foremen = (await productionItemRepository.GetForemenAsync())?.ToList();
+
             var notification = (string)TempData["Notification"];
             if (notification != null)
             {
@@ -32,10 +36,6 @@ namespace EnterpriseManagementApp.Pages.Magazine.Products
             }
 
             ProductionItems = (await productionItemRepository.GetAllAsync())?.ToList();
-            Types = (await productionItemRepository.GetTypesAsync())?.ToList();
-            Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
-            Halls = (await productionItemRepository.GetHallsAsync())?.ToList();
-            Foremen = (await productionItemRepository.GetForemenAsync())?.ToList();
         }
     }
 }

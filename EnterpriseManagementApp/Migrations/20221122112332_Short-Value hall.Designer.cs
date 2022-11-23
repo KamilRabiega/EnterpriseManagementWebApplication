@@ -4,6 +4,7 @@ using EnterpriseManagementApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnterpriseManagementApp.Migrations
 {
     [DbContext(typeof(EmaDbContext))]
-    partial class EmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221122112332_Short-Value hall")]
+    partial class ShortValuehall
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,9 +101,6 @@ namespace EnterpriseManagementApp.Migrations
                     b.Property<int>("HallId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("MagPickupDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("MaterialId")
                         .HasColumnType("int");
 
@@ -116,12 +115,6 @@ namespace EnterpriseManagementApp.Migrations
 
                     b.Property<bool>("ReadyToPickUp")
                         .HasColumnType("bit");
-
-                    b.Property<bool>("ReceivedByMagazine")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ReleaseDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("TypeId")
                         .HasColumnType("int");

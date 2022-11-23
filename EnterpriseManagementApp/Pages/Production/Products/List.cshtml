@@ -29,6 +29,8 @@
             <tbody>
                 @foreach (var item in Model.ProductionItems)
                 {
+                    if (item.ReceivedByMagazine == false)
+                    {
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.Type.Name @item.Type.Diameter/@item.Type.Length/@item.Type.WallThickness/@item.Type.Class</td>
@@ -40,6 +42,7 @@
                             <a class="btn btn-primary" href="/Production/Products/Edit/@item.Id">Show</a>
                         </td>
                     </tr>
+                    }
                 }
             </tbody>
         </table>

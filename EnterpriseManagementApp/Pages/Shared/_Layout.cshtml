@@ -93,7 +93,13 @@
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Magazine"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Magazine/Products/ProductionList">Production List</a>
+                                <a class="nav-link text-light" asp-area="" asp-page="/Magazine/Products/ProductionList">Pickup ready list</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/Magazine/Products/Magazine">Magazine list</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/Magazine/Products/StockLevel">Stock level</a>
                             </li>
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Finance"))

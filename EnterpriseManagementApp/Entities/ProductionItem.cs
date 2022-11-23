@@ -16,5 +16,8 @@
         public DateTime ProductionDate { get; set; }
         public String? AdditionalInformation { get; set; }
         public bool ReadyToPickUp { get; set; }
+        public bool ReceivedByMagazine { get; set; }
+        public DateTime? MagPickupDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
     }
 }
