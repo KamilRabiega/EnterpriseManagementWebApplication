@@ -24,6 +24,7 @@ namespace EnterpriseManagementApp.Pages.Magazine.Products
             DateTime dateTimeNow = DateTime.Now;
             ProductionItem = await productionItemRepository.GetAsync(id);
             ProductionItem.ReceivedByMagazine = true;
+            ProductionItem.ReadyToRelease = false;
             ProductionItem.MagPickupDate = dateTimeNow;
             await productionItemRepository.UpdateAsync(ProductionItem);
 

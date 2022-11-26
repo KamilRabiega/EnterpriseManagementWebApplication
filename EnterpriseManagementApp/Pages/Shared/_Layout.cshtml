@@ -116,7 +116,13 @@
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Board"))
                         {
-                            
+
+                        }
+                        else
+                        {
+                            <li>
+                                <a class="nav-link text-light" asp-page="/Privacy">Privacy</a>
+                            </li>
                         }
                     </ul>
                 </div>
