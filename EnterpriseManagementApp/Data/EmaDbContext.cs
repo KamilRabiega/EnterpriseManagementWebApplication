@@ -14,6 +14,9 @@ namespace EnterpriseManagementApp.Data
         public DbSet<Material> Materials { get; set; }
         public DbSet<Entities.Type> Types { get; set; }
         public DbSet<Foreman> Foremen { get; set; }
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Tax> Taxes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,14 +33,29 @@ namespace EnterpriseManagementApp.Data
                 .HasForeignKey(p => p.MaterialId);
 
                 //One to many relation beetween Hall and ProductionItem tables
-                eb.HasOne(p => p.Type)
+                eb.HasOne(p => p.Hall)
                 .WithMany(h => h.ProductionItem)
-                .HasForeignKey(p => p.TypeId);
+                .HasForeignKey(p => p.HallId);
 
                 //One to many relation beetween Foreman and ProductionItem tables
-                eb.HasOne(p => p.Type)
+                eb.HasOne(p => p.Foreman)
                 .WithMany(f => f.ProductionItem)
-                .HasForeignKey(p => p.TypeId);
+                .HasForeignKey(p => p.ForemanId);
+            });
+
+            modelBuilder.Entity<Invoice>(eb =>
+            {
+                eb.HasOne(i => i.Tax)
+                .WithMany(t => t.Invoice)
+                .HasForeignKey(i => i.TaxClassId);
+
+                eb.HasOne(i => i.ProductionItem)
+                .WithMany(p => p.Invoice)
+                .HasForeignKey(i => i.ProductionItemId);
+
+                eb.HasOne(i => i.Company)
+                .WithMany(c => c.Invoice)
+                .HasForeignKey(i => i.CompanyId);
             });
         }
     }

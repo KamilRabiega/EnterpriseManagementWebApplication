@@ -1,4 +1,6 @@
-﻿namespace EnterpriseManagementApp.Entities
+﻿using EnterpriseManagementApp.Migrations;
+
+namespace EnterpriseManagementApp.Entities
 {
     public class ProductionItem
     {
@@ -19,5 +21,7 @@
         public bool ReceivedByMagazine { get; set; }
         public DateTime? MagPickupDate { get; set; }
         public DateTime? ReleaseDate { get; set; }
+        public List<Invoice> Invoice { get; set; } = new List<Invoice>();
+        public bool? ReadyToRelease { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using EnterpriseManagementApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnterpriseManagementApp.Migrations
 {
     [DbContext(typeof(EmaDbContext))]
-    partial class EmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221125193633_readytorelease")]
+    partial class readytorelease
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,6 +124,9 @@ namespace EnterpriseManagementApp.Migrations
                     b.Property<Guid?>("ProductionItemId")
                         .IsRequired()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("QuantityPallets")
+                        .HasColumnType("int");
 
                     b.Property<int?>("TaxClassId")
                         .HasColumnType("int");

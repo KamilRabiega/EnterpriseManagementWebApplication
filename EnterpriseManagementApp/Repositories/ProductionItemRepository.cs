@@ -19,6 +19,13 @@ namespace EnterpriseManagementApp.Repositories
             return productionItem;
         }
 
+        public async Task<Invoice> AddInvoiceAsync(Invoice invoice)
+        {
+            await emaDbContext.Invoices.AddAsync(invoice);
+            await emaDbContext.SaveChangesAsync();
+            return invoice;
+        }
+
         public async Task<bool> DeleteAsync(Guid id)
         {
             var existingProductionItem = await emaDbContext.ProductionItems.FindAsync(id);
@@ -32,6 +39,19 @@ namespace EnterpriseManagementApp.Repositories
             return false;
         }
 
+        public async Task<ProductionItem> ReadyToReleaseAsync(Guid id)
+        {
+            var existingProductionItem = await emaDbContext.ProductionItems.FindAsync(id);
+
+            if (existingProductionItem != null)
+            {
+                existingProductionItem.ReadyToRelease = true;
+            }
+
+            await emaDbContext.SaveChangesAsync();
+            return existingProductionItem;
+        }
+
         public async Task<IEnumerable<ProductionItem>> GetAllAsync()
         {
             return await emaDbContext.ProductionItems.ToListAsync();
@@ -40,6 +60,11 @@ namespace EnterpriseManagementApp.Repositories
         public async Task<ProductionItem> GetAsync(Guid id)
         {
             return await emaDbContext.ProductionItems.FindAsync(id);
+        }
+
+        public async Task<IEnumerable<Company>> GetCompaniesAsync()
+        {
+            return await emaDbContext.Companies.ToListAsync();
         }
 
         public async Task<IEnumerable<Foreman>> GetForemenAsync()
@@ -52,9 +77,19 @@ namespace EnterpriseManagementApp.Repositories
             return await emaDbContext.Halls.ToListAsync();
         }
 
+        public async Task<IEnumerable<Invoice>> GetInvoicesAsync()
+        {
+            return await emaDbContext.Invoices.ToListAsync();
+        }
+
         public async Task<IEnumerable<Material>> GetMaterialsAsync()
         {
             return await emaDbContext.Materials.ToListAsync();
+        }
+
+        public async Task<IEnumerable<Tax>> GetTaxesAsync()
+        {
+            return await emaDbContext.Taxes.ToListAsync();
         }
 
         public async Task<IEnumerable<Entities.Type>> GetTypesAsync()

@@ -4,6 +4,7 @@ using EnterpriseManagementApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnterpriseManagementApp.Migrations
 {
     [DbContext(typeof(EmaDbContext))]
-    partial class EmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221124124248_Delete CompanyTest")]
+    partial class DeleteCompanyTest
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,27 +23,6 @@ namespace EnterpriseManagementApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("EnterpriseManagementApp.Entities.Company", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Director")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameOfCompany")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Companies");
-                });
 
             modelBuilder.Entity("EnterpriseManagementApp.Entities.Foreman", b =>
                 {
@@ -83,58 +64,6 @@ namespace EnterpriseManagementApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Halls");
-                });
-
-            modelBuilder.Entity("EnterpriseManagementApp.Entities.Invoice", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("CompanyId")
-                        .IsRequired()
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateOfPayment")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmaCompany")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Gross")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InvoiceDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("InvoiceName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("InvoiceNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Net")
-                        .HasColumnType("int");
-
-                    b.Property<Guid?>("ProductionItemId")
-                        .IsRequired()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("TaxClassId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.HasIndex("ProductionItemId");
-
-                    b.HasIndex("TaxClassId");
-
-                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("EnterpriseManagementApp.Entities.Material", b =>
@@ -190,9 +119,6 @@ namespace EnterpriseManagementApp.Migrations
                     b.Property<bool>("ReadyToPickUp")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("ReadyToRelease")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("ReceivedByMagazine")
                         .HasColumnType("bit");
 
@@ -213,26 +139,6 @@ namespace EnterpriseManagementApp.Migrations
                     b.HasIndex("TypeId");
 
                     b.ToTable("ProductionItems");
-                });
-
-            modelBuilder.Entity("EnterpriseManagementApp.Entities.Tax", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("TaxClassName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TaxClassValue")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Taxes");
                 });
 
             modelBuilder.Entity("EnterpriseManagementApp.Entities.Type", b =>
@@ -263,31 +169,6 @@ namespace EnterpriseManagementApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Types");
-                });
-
-            modelBuilder.Entity("EnterpriseManagementApp.Entities.Invoice", b =>
-                {
-                    b.HasOne("EnterpriseManagementApp.Entities.Company", "Company")
-                        .WithMany("Invoice")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EnterpriseManagementApp.Entities.ProductionItem", "ProductionItem")
-                        .WithMany("Invoice")
-                        .HasForeignKey("ProductionItemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("EnterpriseManagementApp.Entities.Tax", "Tax")
-                        .WithMany("Invoice")
-                        .HasForeignKey("TaxClassId");
-
-                    b.Navigation("Company");
-
-                    b.Navigation("ProductionItem");
-
-                    b.Navigation("Tax");
                 });
 
             modelBuilder.Entity("EnterpriseManagementApp.Entities.ProductionItem", b =>
@@ -325,11 +206,6 @@ namespace EnterpriseManagementApp.Migrations
                     b.Navigation("Type");
                 });
 
-            modelBuilder.Entity("EnterpriseManagementApp.Entities.Company", b =>
-                {
-                    b.Navigation("Invoice");
-                });
-
             modelBuilder.Entity("EnterpriseManagementApp.Entities.Foreman", b =>
                 {
                     b.Navigation("ProductionItem");
@@ -343,16 +219,6 @@ namespace EnterpriseManagementApp.Migrations
             modelBuilder.Entity("EnterpriseManagementApp.Entities.Material", b =>
                 {
                     b.Navigation("ProductionItem");
-                });
-
-            modelBuilder.Entity("EnterpriseManagementApp.Entities.ProductionItem", b =>
-                {
-                    b.Navigation("Invoice");
-                });
-
-            modelBuilder.Entity("EnterpriseManagementApp.Entities.Tax", b =>
-                {
-                    b.Navigation("Invoice");
                 });
 
             modelBuilder.Entity("EnterpriseManagementApp.Entities.Type", b =>

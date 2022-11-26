@@ -1,0 +1,114 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.Finance.Invoices.AddInvoiceModel
+@{
+}
+<div class="bg-light bg-opacity-10 py-2 mb-2">
+    <div class="container text-center">
+        <h1>Add finished product</h1>
+    </div>
+</div>
+
+<div>
+    <div class="container w-50">
+        <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
+            @*InvoiceName*@
+            <div class="mb-3">
+                <label for="invoiceName" class="form-label">Invoice name</label>
+                <input type="text" class="form-control" id="invoiceName" asp-for="AddNewInvoice.InvoiceName">
+            </div>
+            @*InvoiceNumber*@
+            <div class="mb-3">
+                <label for="invoiceNumber" class="form-label">Invoice number</label>
+                <input type="text" class="form-control" id="invoiceNumber" asp-for="AddNewInvoice.InvoiceNumber">
+            </div>
+            @*CompanyId*@
+            <div class="mb-3">
+                <label for="companyId" class="form-label">Company</label>
+                @if (Model.Companies != null && Model.Companies.Any())
+                {
+                    <select class="form-select" aria-label="" asp-for="AddNewInvoice.CompanyId">
+                        <option selected value="">Select company..</option>
+                        @foreach (var item in Model.Companies)
+                        {
+                            <option value="@item.Id">@item.Id. @item.NameOfCompany</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <select class="form-select">
+                        <option selected value="">Something went wrong..</option>
+                    </select>
+                }
+            </div>
+            @*PriceNet*@
+            <div class="mb-3">
+                <label for="priceNet" class="form-label">Price (Net)</label>
+                <input type="number" min="0" class="form-control" id="priceNet" asp-for="AddNewInvoice.Net">
+            </div>
+            @*PriceGross*@
+            <div class="mb-3">
+                <label for="priceGross" class="form-label">Price (Gross)</label>
+                <input type="number" min="0" class="form-control" id="priceGross" asp-for="AddNewInvoice.Gross">
+            </div>
+            @*TaxClassId*@
+            <div class="mb-3">
+                <label for="taxClassId" class="form-label">Tax class</label>
+                @if (Model.Taxes != null && Model.Taxes.Any())
+                {
+                    <select class="form-select" aria-label="" asp-for="AddNewInvoice.TaxClassId">
+                        <option selected value="">Select tax class..</option>
+                        @foreach (var item in Model.Taxes)
+                        {
+                            <option value="@item.Id">@item.Id. @item.TaxClassName</option>
+                        }
+                    </select>
+                }
+                else
+                {
+                    <select class="form-select">
+                        <option selected value="">Something went wrong..</option>
+                    </select>
+                }
+            </div>
+            @*ProductionItemId*@
+            <div class="mb-3">
+                <label for="productionItemId" class="form-label">Products</label>
+                @if (Model.ProductionItems != null && Model.ProductionItems.Any())
+                {
+                    <select class="form-select" aria-label="" asp-for="AddNewInvoice.ProductionItemId">
+                        <option selected value="">Select product..</option>
+                        @foreach (var item in Model.ProductionItems)
+                        {
+                            if(item.ReadyToRelease != true)
+                            {
+                                <option value="@item.Id">@item.Type.Name @item.Type.Diameter/@item.Type.Length/@item.Type.WallThickness/@item.Type.Class</option>
+                            }
+                        }
+                    </select>
+                }
+                else
+                {
+                    <select class="form-select">
+                        <option selected value="">Something went wrong..</option>
+                    </select>
+                }
+            </div>
+            @*InvoiceDate*@
+            <div class="mb-3">
+                <label for="invoiceDate" class="form-label">Invoice date</label>
+                <input type="date" class="form-control" id="invoiceDate" asp-for="AddNewInvoice.InvoiceDate">
+            </div>
+            @*PaymentDate*@
+            <div class="mb-3">
+                <label for="paymentDate" class="form-label">Invoice date</label>
+                <input type="date" class="form-control" id="paymentDate" asp-for="AddNewInvoice.DateOfPayment">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

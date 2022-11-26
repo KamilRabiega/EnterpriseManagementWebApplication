@@ -20,9 +20,10 @@
                         <td>Id</td>
                         <td>Type</td>
                         <td>Hall</td>
+                        <td>Quantity PCS</td>
                         <td>Quantity pallets</td>
+                        <td>Ready to release</td>
                         <td>Pickup date</td>
-                        <td>Release</td>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,12 +34,11 @@
                             <tr>
                                 <td>@item.Id</td>
                                 <td>@item.Type.Name @item.Type.Diameter/@item.Type.Length/@item.Type.WallThickness/@item.Type.Class</td>
-                                <td>@item.Hall.Value</td>
+                                <td>@item.Hall.ShortValue</td>
+                                <td>@item.QuantityPCS</td>
                                 <td>@item.QuantityPallets</td>
+                                <td>@item.ReadyToRelease</td>
                                 <td>@item.MagPickupDate</td>
-                                <td>
-                                    <a class="btn btn-primary" href="#">Release (not working)</a>
-                                </td>
                             </tr>
                         }
                     }
