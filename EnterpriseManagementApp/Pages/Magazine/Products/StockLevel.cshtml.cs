@@ -26,6 +26,7 @@ namespace EnterpriseManagementApp.Pages.Magazine.Products
             Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
             Halls = (await productionItemRepository.GetHallsAsync())?.ToList();
             Foremen = (await productionItemRepository.GetForemenAsync())?.ToList();
+            ProductionItems = (await productionItemRepository.GetAllAsync())?.ToList();
         }
     }
 }

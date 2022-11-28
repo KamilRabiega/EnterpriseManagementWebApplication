@@ -29,7 +29,7 @@
                 <tbody>
                     @foreach (var item in Model.ProductionItems)
                     {
-                        if (item.ReceivedByMagazine == true)
+                        if (item.ReceivedByMagazine == true && item.Released == false)
                         {
                             <tr>
                                 <td>@item.Id</td>

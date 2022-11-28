@@ -4,8 +4,57 @@
 }
 <div class="bg-light bg-opacity-10 py-2 mb-2">
     <div class="container text-center">
-        <h1>Products in magazine</h1>
+        <h1>Ready to release products</h1>
     </div>
 </div>
 
 <partial name="_Notification">
+
+
+    @if (Model.ProductionItems != null && Model.ProductionItems.Any())
+    {
+        <div class="container" style="width: 75%;">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Type</td>
+                        <td>Hall</td>
+                        <td>Quantity PCS</td>
+                        <td>Quantity pallets</td>
+                        <td>Ready to release</td>
+                        <td>Pickup date</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ProductionItems)
+                    {
+                        if (item.ReadyToRelease == true && item.Released == false)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Type.Name @item.Type.Diameter/@item.Type.Length/@item.Type.WallThickness/@item.Type.Class</td>
+                                <td>@item.Hall.ShortValue</td>
+                                <td>@item.QuantityPCS</td>
+                                <td>@item.QuantityPallets</td>
+                                <td>@item.ReadyToRelease</td>
+                                <td>@item.MagPickupDate</td>
+                                <td>
+                                    <a href="/Magazine/Products/ReleaseProduct/@item.Id" class="btn btn-primary">Release product</a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="container text-center pt-5">
+            <p>
+                There are no products to show
+            </p>
+        </div>
+    }

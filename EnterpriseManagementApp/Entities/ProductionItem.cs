@@ -23,5 +23,6 @@ namespace EnterpriseManagementApp.Entities
         public DateTime? ReleaseDate { get; set; }
         public List<Invoice> Invoice { get; set; } = new List<Invoice>();
         public bool? ReadyToRelease { get; set; }
+        public bool? Released { get; set; }
     }
 }

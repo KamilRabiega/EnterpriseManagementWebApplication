@@ -50,7 +50,9 @@ namespace EnterpriseManagementApp.Pages.Production.Products
                 ProductionDate = dateTimeNow,
                 AdditionalInformation = AddProductionItemRequest.AdditionalInformation,
                 ReadyToPickUp = AddProductionItemRequest.ReadyToPickUp,
-            };
+                ReadyToRelease = false,
+                Released = false,
+        };
             
             await productionItemRepository.AddAsync(productionItem);
 
