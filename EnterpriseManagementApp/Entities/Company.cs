@@ -8,6 +8,6 @@ namespace EnterpriseManagementApp.Entities
         public int Id { get; set; }
         public String NameOfCompany { get; set; }
         public String Director { get; set; }
-        public List<Invoice> Invoice { get; set; } = new List<Invoice>();
+        public List<StockIssueConfirmation> StockIssueConfirmation { get; set; } = new List<StockIssueConfirmation>();
     }
 }

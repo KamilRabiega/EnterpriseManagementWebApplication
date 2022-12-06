@@ -1,30 +1,30 @@
-using EnterpriseManagementApp.Entities;
 using EnterpriseManagementApp.Entities.ViewModels;
+using EnterpriseManagementApp.Entities;
 using EnterpriseManagementApp.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
-namespace EnterpriseManagementApp.Pages.Finance.Invoices
+namespace EnterpriseManagementApp.Pages.Finance.Confirmations
 {
     [Authorize(Policy = "financeadmin")]
-    public class AddInvoiceModel : PageModel
+    public class AddStockIssueConfirmationModel : PageModel
     {
         private readonly IProductionItemRepository productionItemRepository;
 
-        public AddInvoiceModel(IProductionItemRepository productionItemRepository)
+        public AddStockIssueConfirmationModel(IProductionItemRepository productionItemRepository)
         {
             this.productionItemRepository = productionItemRepository;
         }
         [BindProperty]
-        public AddNewInvoice AddNewInvoice { get; set; }
+        public AddNewCI AddNewCI { get; set; }
         public List<ProductionItem> ProductionItems { get; set; }
         public List<Entities.Type> Types { get; set; }
         public List<Material> Materials { get; set; }
         public List<Hall> Halls { get; set; }
         public List<Foreman> Foremen { get; set; }
-        public List<Invoice> Invoices { get; set; }
+        public List<StockIssueConfirmation> StockIssueConfirmations { get; set; }
         public List<Company> Companies { get; set; }
         public List<Tax> Taxes { get; set; }
         public async Task OnGet()
@@ -36,7 +36,7 @@ namespace EnterpriseManagementApp.Pages.Finance.Invoices
             }
 
             ProductionItems = (await productionItemRepository.GetAllAsync())?.ToList();
-            Invoices = (await productionItemRepository.GetInvoicesAsync())?.ToList();
+            StockIssueConfirmations = (await productionItemRepository.GetCIsAsync())?.ToList();
             Types = (await productionItemRepository.GetTypesAsync())?.ToList();
             Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
             Halls = (await productionItemRepository.GetHallsAsync())?.ToList();
@@ -50,33 +50,33 @@ namespace EnterpriseManagementApp.Pages.Finance.Invoices
         public async Task<IActionResult> OnPost()
         {
             var newEma = "OurName Company";
-            var newInvoice = new Invoice()
+            var newStockIssueConfirmation = new StockIssueConfirmation()
             {
-                InvoiceName = AddNewInvoice.InvoiceName,
-                InvoiceNumber = AddNewInvoice.InvoiceNumber,
-                CompanyId = AddNewInvoice.CompanyId,
-                Net = AddNewInvoice.Net,
-                Gross = AddNewInvoice.Gross,
-                TaxClassId = AddNewInvoice.TaxClassId,
-                ProductionItemId = AddNewInvoice.ProductionItemId,
-                InvoiceDate = AddNewInvoice.InvoiceDate,
-                DateOfPayment = AddNewInvoice.DateOfPayment,
+                CIName = AddNewCI.CIName,
+                CINumber = AddNewCI.CINumber,
+                CompanyId = AddNewCI.CompanyId,
+                Net = AddNewCI.Net,
+                Gross = AddNewCI.Gross,
+                TaxClassId = AddNewCI.TaxClassId,
+                ProductionItemId = AddNewCI.ProductionItemId,
+                CIDate = AddNewCI.CIDate,
+                DateOfPayment = AddNewCI.DateOfPayment,
                 EmaCompany = newEma,
             };
-            var selectedId = AddNewInvoice.ProductionItemId;
-            
-            await productionItemRepository.AddInvoiceAsync(newInvoice);
+            var selectedId = AddNewCI.ProductionItemId;
+
+            await productionItemRepository.AddCIAsync(newStockIssueConfirmation);
             await productionItemRepository.ReadyToReleaseAsync(selectedId);
 
             var notification = new Notification
             {
-                Message = "This invoice was created succesfully.",
+                Message = "This Stock Issue Confirmation was created succesfully.",
                 Type = Enums.NotificationType.Success
             };
 
             TempData["Notification"] = JsonSerializer.Serialize(notification);
 
-            return RedirectToPage("/Finance/Invoices/InvoicesList");
+            return RedirectToPage("/Finance/Confirmations/ListStockIssueConfirmation");
         }
     }
 }

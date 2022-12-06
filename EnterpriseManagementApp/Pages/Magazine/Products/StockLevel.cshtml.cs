@@ -15,7 +15,9 @@ namespace EnterpriseManagementApp.Pages.Magazine.Products
         {
             this.productionItemRepository = productionItemRepository;
         }
+        [BindProperty]
         public List<ProductionItem> ProductionItems { get; set; }
+        [BindProperty]
         public List<Entities.Type> Types { get; set; }
         public List<Material> Materials { get; set; }
         public List<Hall> Halls { get; set; }

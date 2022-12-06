@@ -1,6 +1,7 @@
 ﻿@page
 @model EnterpriseManagementApp.Pages.Magazine.Products.StockLevelModel
 @using EnterpriseManagementApp.Data
+@using Microsoft.EntityFrameworkCore
 @inject EmaDbContext emaDbContext
 
 <div class="bg-light bg-opacity-10 py-2 mb-2">
@@ -25,62 +26,44 @@
                 </thead>
                 <tbody>
                     @{
-                        var results = emaDbContext.ProductionItems
-                            .GroupBy(x => x.TypeId)
-                            .Select(x => new
-                            {
-                                TypeId = x.Key,
-                                QuantityPallets = x.Sum(p => p.QuantityPallets),
-                                QuantityPCS = x.Sum(p => p.QuantityPCS),
-                            }).ToList();
+                        var results = emaDbContext.ProductionItems   
+                                .Select(x => new 
+                                {
+                                    TypeId = x.Type.Id,
+                                    TypeName = x.Type.Name + 
+                                        "/" + x.Type.Diameter + 
+                                        "/" + x.Type.Length +
+                                        "/" + x.Type.WallThickness + 
+                                        "/" + x.Type.Class,
+                                    QuantityPallets = x.QuantityPallets,
+                                    QuantityPCS = x.QuantityPCS,
+                                })
+                                .GroupBy(x => new
+                                {
+                                    x.TypeId,
+                                    x.TypeName
+                                })
+                                .Select(x => new
+                                {
+                                    TypeId = x.Key.TypeId,
+                                    TypeName = x.Key.TypeName,
+                                    QuantityPallets = x.Sum(p => p.QuantityPallets),
+                                    QuantityPCS = x.Sum(p => p.QuantityPCS),
+                                }).ToList();
 
                         int number = 1;
                     }
-
+                    
                     @foreach(var element in results)
                     {
                         <tr>
                             <td>@number.</td>
-                            <td>@element.TypeId</td>
+                            <td>@element.TypeName</td>
                             <td>@element.QuantityPallets</td>
                             <td>@element.QuantityPCS</td>
                         </tr>
                         number += 1;
                     }
-
-
-
-
-@*
-                    @foreach(var item in Model.ProductionItems)
-                    {
-                        var counts = emaDbContext.ProductionItems
-                        .GroupBy(m => m.TypeId)
-                        .Select(g => new 
-                        { 
-                            Count = g.Sum(p => p.QuantityPallets)
-                        });
-
-                    <tr>
-                        <td>@item.Type.Id</td>
-                        <td>@item.Type.Name @item.Type.Diameter/@item.Type.Length/@item.Type.WallThickness/@item.Type.Class</td>
-                        <td>@counts.FirstOrDefault().Count</td>
-                    </tr>
-                    }*@
-                    
-                    
-
-
-
-                        @*@foreach (var item in Model.Types)
-                        {
-                            var counts = await emaDbContext.ProductionItems.GroupBy(m => m.TypeId).Select(g =>
-                            new { TypeId = g.Key, Count = g.Sum() }).ToListAsync();
-                            <tr>
-                                <td>@item.Id</td>
-                                <td>@item.ProductionItem</td>
-                            </tr>
-                        }*@
                 </tbody>
             </table>
         </div>

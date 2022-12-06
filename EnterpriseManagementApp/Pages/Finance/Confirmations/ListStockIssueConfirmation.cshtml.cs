@@ -1,29 +1,28 @@
-using EnterpriseManagementApp.Entities;
 using EnterpriseManagementApp.Entities.ViewModels;
+using EnterpriseManagementApp.Entities;
 using EnterpriseManagementApp.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 
-namespace EnterpriseManagementApp.Pages.Finance.Invoices
+namespace EnterpriseManagementApp.Pages.Finance.Confirmations
 {
     [Authorize(Policy = "financeadmin")]
-    public class InvoicesListModel : PageModel
+    public class ListStockIssueConfirmationModel : PageModel
     {
         private readonly IProductionItemRepository productionItemRepository;
 
-        public InvoicesListModel(IProductionItemRepository productionItemRepository)
+        public ListStockIssueConfirmationModel(IProductionItemRepository productionItemRepository)
         {
             this.productionItemRepository = productionItemRepository;
         }
-
         public List<ProductionItem> ProductionItems { get; set; }
         public List<Entities.Type> Types { get; set; }
         public List<Material> Materials { get; set; }
         public List<Hall> Halls { get; set; }
         public List<Foreman> Foremen { get; set; }
-        public List<Invoice> Invoices { get; set; }
+        public List<StockIssueConfirmation> StockIssueConfirmations { get; set; }
         public List<Company> Companies { get; set; }
         public List<Tax> Taxes { get; set; }
 
@@ -36,7 +35,7 @@ namespace EnterpriseManagementApp.Pages.Finance.Invoices
             }
 
             ProductionItems = (await productionItemRepository.GetAllAsync())?.ToList();
-            Invoices = (await productionItemRepository.GetInvoicesAsync())?.ToList();
+            StockIssueConfirmations = (await productionItemRepository.GetCIsAsync())?.ToList();
             Types = (await productionItemRepository.GetTypesAsync())?.ToList();
             Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
             Halls = (await productionItemRepository.GetHallsAsync())?.ToList();

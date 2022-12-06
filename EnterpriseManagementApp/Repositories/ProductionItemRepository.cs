@@ -19,11 +19,11 @@ namespace EnterpriseManagementApp.Repositories
             return productionItem;
         }
 
-        public async Task<Invoice> AddInvoiceAsync(Invoice invoice)
+        public async Task<StockIssueConfirmation> AddCIAsync(StockIssueConfirmation stockIssueConfirmation)
         {
-            await emaDbContext.Invoices.AddAsync(invoice);
+            await emaDbContext.StockIssueConfirmations.AddAsync(stockIssueConfirmation);
             await emaDbContext.SaveChangesAsync();
-            return invoice;
+            return stockIssueConfirmation;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
@@ -77,9 +77,9 @@ namespace EnterpriseManagementApp.Repositories
             return await emaDbContext.Halls.ToListAsync();
         }
 
-        public async Task<IEnumerable<Invoice>> GetInvoicesAsync()
+        public async Task<IEnumerable<StockIssueConfirmation>> GetCIsAsync()
         {
-            return await emaDbContext.Invoices.ToListAsync();
+            return await emaDbContext.StockIssueConfirmations.ToListAsync();
         }
 
         public async Task<IEnumerable<Material>> GetMaterialsAsync()
@@ -116,6 +116,45 @@ namespace EnterpriseManagementApp.Repositories
 
             await emaDbContext.SaveChangesAsync();
             return existingProductionItem;
+        }
+
+        public async Task<StockIssueConfirmation> GetCiAsync(Guid id)
+        {
+            return await emaDbContext.StockIssueConfirmations.FindAsync(id);
+        }
+
+        public async Task<StockIssueConfirmation> UpdateCiAsync(StockIssueConfirmation stockIssueConfirmation)
+        {
+            var existingCi = await emaDbContext.StockIssueConfirmations.FindAsync(stockIssueConfirmation.Id);
+
+            if(existingCi != null)
+            {
+                existingCi.CIName = stockIssueConfirmation.CIName;
+                existingCi.CINumber = stockIssueConfirmation.CINumber;
+                existingCi.CompanyId = stockIssueConfirmation.CompanyId;
+                existingCi.EmaCompany = stockIssueConfirmation.EmaCompany;
+                existingCi.Net = stockIssueConfirmation.Net;
+                existingCi.Gross = stockIssueConfirmation.Gross;
+                existingCi.TaxClassId = stockIssueConfirmation.TaxClassId;
+                existingCi.ProductionItemId = stockIssueConfirmation.ProductionItemId;
+                existingCi.CIDate = stockIssueConfirmation.CIDate;
+                existingCi.DateOfPayment = stockIssueConfirmation.DateOfPayment;
+            }
+            await emaDbContext.SaveChangesAsync();
+            return existingCi;
+        }
+
+        public async Task<bool> DeleteCiAsync(Guid id)
+        {
+            var existingCi = await emaDbContext.StockIssueConfirmations.FindAsync(id);
+
+            if (existingCi != null)
+            {
+                emaDbContext.StockIssueConfirmations.Remove(existingCi);
+                await emaDbContext.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
     }
 }

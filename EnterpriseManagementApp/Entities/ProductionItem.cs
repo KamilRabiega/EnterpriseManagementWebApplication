@@ -21,7 +21,7 @@ namespace EnterpriseManagementApp.Entities
         public bool ReceivedByMagazine { get; set; }
         public DateTime? MagPickupDate { get; set; }
         public DateTime? ReleaseDate { get; set; }
-        public List<Invoice> Invoice { get; set; } = new List<Invoice>();
+        public List<StockIssueConfirmation> StockIssueConfirmation { get; set; } = new List<StockIssueConfirmation>();
         public bool? ReadyToRelease { get; set; }
         public bool? Released { get; set; }
     }

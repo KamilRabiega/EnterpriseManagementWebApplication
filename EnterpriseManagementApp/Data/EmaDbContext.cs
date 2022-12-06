@@ -15,7 +15,7 @@ namespace EnterpriseManagementApp.Data
         public DbSet<Entities.Type> Types { get; set; }
         public DbSet<Foreman> Foremen { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<StockIssueConfirmation> StockIssueConfirmations { get; set; }
         public DbSet<Tax> Taxes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -43,19 +43,19 @@ namespace EnterpriseManagementApp.Data
                 .HasForeignKey(p => p.ForemanId);
             });
 
-            modelBuilder.Entity<Invoice>(eb =>
+            modelBuilder.Entity<StockIssueConfirmation>(eb =>
             {
-                eb.HasOne(i => i.Tax)
-                .WithMany(t => t.Invoice)
-                .HasForeignKey(i => i.TaxClassId);
+                eb.HasOne(ci => ci.Tax)
+                .WithMany(t => t.StockIssueConfirmation)
+                .HasForeignKey(ci => ci.TaxClassId);
 
-                eb.HasOne(i => i.ProductionItem)
-                .WithMany(p => p.Invoice)
-                .HasForeignKey(i => i.ProductionItemId);
+                eb.HasOne(ci => ci.ProductionItem)
+                .WithMany(p => p.StockIssueConfirmation)
+                .HasForeignKey(ci => ci.ProductionItemId);
 
-                eb.HasOne(i => i.Company)
-                .WithMany(c => c.Invoice)
-                .HasForeignKey(i => i.CompanyId);
+                eb.HasOne(ci => ci.Company)
+                .WithMany(c => c.StockIssueConfirmation)
+                .HasForeignKey(ci => ci.CompanyId);
             });
         }
     }

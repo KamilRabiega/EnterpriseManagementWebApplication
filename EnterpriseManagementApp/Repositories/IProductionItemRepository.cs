@@ -4,19 +4,22 @@ namespace EnterpriseManagementApp.Repositories
 {
     public interface IProductionItemRepository
     {
-        Task<IEnumerable<Entities.Type>> GetTypesAsync(); //To get all types of products
-        Task<IEnumerable<Material>> GetMaterialsAsync(); //To get all materials of products
-        Task<IEnumerable<Hall>> GetHallsAsync(); //To get all halls of products
-        Task<IEnumerable<Foreman>> GetForemenAsync(); //To get all foremen of products
-        Task<IEnumerable<Invoice>> GetInvoicesAsync(); //To get all foremen of products
-        Task<IEnumerable<Tax>> GetTaxesAsync(); //To get all foremen of products
-        Task<IEnumerable<Company>> GetCompaniesAsync(); //To get all foremen of products
-        Task<IEnumerable<ProductionItem>> GetAllAsync(); //To get all production items
-        Task<ProductionItem> GetAsync(Guid id); //To get a single one item by id
-        Task<ProductionItem> AddAsync(ProductionItem productionItem); //To add a single item 
-        Task<Invoice> AddInvoiceAsync(Invoice invoice); //To add a single item 
-        Task<ProductionItem> UpdateAsync(ProductionItem productionItem); //To update single ProductionItem
-        Task<ProductionItem> ReadyToReleaseAsync(Guid id); //To update single ProductionItem
-        Task<bool> DeleteAsync(Guid id); // To delete
+        Task<IEnumerable<Entities.Type>> GetTypesAsync();
+        Task<IEnumerable<Material>> GetMaterialsAsync();
+        Task<IEnumerable<Hall>> GetHallsAsync();
+        Task<IEnumerable<Foreman>> GetForemenAsync();
+        Task<IEnumerable<StockIssueConfirmation>> GetCIsAsync();
+        Task<IEnumerable<Tax>> GetTaxesAsync();
+        Task<IEnumerable<Company>> GetCompaniesAsync();
+        Task<IEnumerable<ProductionItem>> GetAllAsync();
+        Task<StockIssueConfirmation> GetCiAsync(Guid id);
+        Task<ProductionItem> GetAsync(Guid id);
+        Task<ProductionItem> AddAsync(ProductionItem productionItem);
+        Task<StockIssueConfirmation> AddCIAsync(StockIssueConfirmation stockIssueConfirmation);
+        Task<StockIssueConfirmation> UpdateCiAsync(StockIssueConfirmation stockIssueConfirmation);
+        Task<ProductionItem> UpdateAsync(ProductionItem productionItem);
+        Task<ProductionItem> ReadyToReleaseAsync(Guid id);
+        Task<bool> DeleteAsync(Guid id);
+        Task<bool> DeleteCiAsync(Guid id);
     }
 }

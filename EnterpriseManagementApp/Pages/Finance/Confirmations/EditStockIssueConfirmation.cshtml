@@ -1,0 +1,116 @@
+﻿@page "{id:Guid}"
+@model EnterpriseManagementApp.Pages.Finance.Confirmations.EditStockIssueConfirmationModel
+@{
+}
+<div class="bg-light bg-opacity-10 py-2 mb-2">
+    <div class="container text-center">
+        <h1>Edit CI</h1>
+    </div>
+</div>
+
+<partial name="_Notification">
+
+    @if (Model.StockIssueConfirmation != null)
+    {
+        <div>
+            <div class="container w-50">
+                <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="id" asp-for="StockIssueConfirmation.Id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciName" class="form-label">Stock Issue Confirmation Name</label>
+                        <input type="text" class="form-control" id="ciName" asp-for="StockIssueConfirmation.CIName">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciNumber" class="form-label">Stock Issue Confirmation Number</label>
+                        <input type="text" class="form-control" id="ciNumber" asp-for="StockIssueConfirmation.CINumber">
+                    </div>
+                    <div class="mb-3">
+                        <label for="company" class="form-label">Company</label>
+                        @if (Model.Companies != null && Model.Companies.Any())
+                        {
+                            <select class="form-select" asp-for="StockIssueConfirmation.CompanyId">
+                                <option selected value="">Select type..</option>
+                                @foreach (var item in Model.Companies)
+                                {
+                                    <option value="@item.Id">@item.NameOfCompany CEO: @item.Director</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-select">
+                                <option selected value="">Something went wrong..</option>
+                            </select>
+                        }
+                    </div>
+                    <div class="mb-3">
+                        <label for="oCompany" class="form-label">Our company</label>
+                        <input type="text" class="form-control" id="oCompany" asp-for="StockIssueConfirmation.EmaCompany">
+                    </div>
+                    @*PriceNet*@
+                    <div class="mb-3">
+                        <label for="priceNet" class="form-label">Price (Net)</label>
+                        <input type="number" min="0" class="form-control" id="priceNet" asp-for="StockIssueConfirmation.Net">
+                    </div>
+                    @*PriceGross*@
+                    <div class="mb-3">
+                        <label for="priceGross" class="form-label">Price (Gross)</label>
+                        <input type="number" min="0" class="form-control" id="priceGross" asp-for="StockIssueConfirmation.Gross">
+                    </div>
+                    @*TaxClassId*@
+                    <div class="mb-3">
+                        <label for="taxClassId" class="form-label">Tax class</label>
+                        @if (Model.Taxes != null && Model.Taxes.Any())
+                        {
+                            <select class="form-select" aria-label="" asp-for="StockIssueConfirmation.TaxClassId">
+                                <option selected value="">Select tax class..</option>
+                                @foreach (var item in Model.Taxes)
+                                {
+                                    <option value="@item.Id">@item.TaxClassName</option>
+                                }
+                            </select>
+                        }
+                        else
+                        {
+                            <select class="form-select">
+                                <option selected value="">Something went wrong..</option>
+                            </select>
+                        }
+                    </div>
+                    @*ProductionItemId*@
+                    <div class="mb-3">
+                        <label for="productionItemId" class="form-label">Products</label>
+                            <input type="text" class="form-control" id="productionItemId" asp-for="StockIssueConfirmation.ProductionItemId">
+                    </div>
+                    @*InvoiceDate*@
+                    <div class="mb-3">
+                        <label for="ciDate" class="form-label">Creation date</label>
+                        <input type="date" class="form-control" id="ciDate" asp-for="StockIssueConfirmation.CIDate">
+                    </div>
+                    @*PaymentDate*@
+                    <div class="mb-3">
+                        <label for="paymentDate" class="form-label">Payment date</label>
+                        <input type="date" class="form-control" id="paymentDate" asp-for="StockIssueConfirmation.DateOfPayment">
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" style="width: 78px;" type="submit" asp-page-handler="Update">
+                            Submit
+                        </button>
+                        <button class="btn btn-danger" style="margin-left: 8px; width: 78px;" type="submit" asp-page-handler="Delete">
+                            Delete
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <p>Product not found.</p>
+        </div>
+    }

@@ -1,0 +1,67 @@
+﻿@page "{id:Guid}"
+@model EnterpriseManagementApp.Pages.Finance.Confirmations.ViewStockIssueConfirmationModel
+@using EnterpriseManagementApp.Data
+@using Microsoft.EntityFrameworkCore;
+@inject EmaDbContext emaDbContext
+
+<partial name="_Notification">
+
+    @if (Model.StockIssueConfirmation != null)
+    {
+        <div>
+            <div class="container w-50">
+                <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
+                    <div class="mb-3">
+                        <label for="id" class="form-label">Id</label>
+                        <input type="text" class="form-control" id="id" asp-for="StockIssueConfirmation.Id" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciName" class="form-label">Stock Issue Confirmation Name</label>
+                        <input type="text" class="form-control" id="ciName" asp-for="StockIssueConfirmation.CIName" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciNumber" class="form-label">Stock Issue Confirmation Number</label>
+                        <input type="text" class="form-control" id="ciNumber" asp-for="StockIssueConfirmation.CINumber" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="company" class="form-label">Company</label>
+                        <input type="text" class="form-control" id="company" asp-for="StockIssueConfirmation.Company.NameOfCompany" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="oCompany" class="form-label">Our company</label>
+                        <input type="text" class="form-control" id="oCompany" asp-for="StockIssueConfirmation.EmaCompany" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="priceNet" class="form-label">Price (Net)</label>
+                        <input type="number" min="0" class="form-control" id="priceNet" asp-for="StockIssueConfirmation.Net" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="priceGross" class="form-label">Price (Gross)</label>
+                        <input type="number" min="0" class="form-control" id="priceGross" asp-for="StockIssueConfirmation.Gross" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="taxClassId" class="form-label">Tax class</label>
+                        <input type="text" class="form-control" id="taxClassId" asp-for="StockIssueConfirmation.Tax.TaxClassName" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productionItemId" class="form-label">Products</label>
+                        <input type="text" class="form-control" id="productionItemId" asp-for="StockIssueConfirmation.ProductionItemId" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ciDate" class="form-label">Creation date</label>
+                        <input type="date" class="form-control" id="ciDate" asp-for="StockIssueConfirmation.CIDate" readonly>
+                    </div>
+                    <div class="mb-3">
+                        <label for="paymentDate" class="form-label">Payment date</label>
+                        <input type="date" class="form-control" id="paymentDate" asp-for="StockIssueConfirmation.DateOfPayment" readonly>
+                    </div>
+                </form>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="container">
+            <p>Product not found.</p>
+        </div>
+    }

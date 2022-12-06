@@ -108,10 +108,10 @@
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Finance"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Invoices/AddInvoice">New Invoice</a>
+                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/AddStockIssueConfirmation">New Stock Issue Confirmation</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Invoices/InvoicesList">List Invoices</a>
+                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/ListStockIssueConfirmation">List Stock Issue Confirmations</a>
                             </li>
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Board"))

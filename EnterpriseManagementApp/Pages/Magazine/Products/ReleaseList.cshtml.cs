@@ -22,14 +22,14 @@ namespace EnterpriseManagementApp.Pages.Magazine.Products
         public List<Material> Materials { get; set; }
         public List<Hall> Halls { get; set; }
         public List<Foreman> Foremen { get; set; }
-        public List<Invoice> Invoices { get; set; }
+        public List<StockIssueConfirmation> StockIssueConfirmations { get; set; }
         public async Task OnGet()
         {
             Types = (await productionItemRepository.GetTypesAsync())?.ToList();
             Materials = (await productionItemRepository.GetMaterialsAsync())?.ToList();
             Halls = (await productionItemRepository.GetHallsAsync())?.ToList();
             Foremen = (await productionItemRepository.GetForemenAsync())?.ToList();
-            Invoices = (await productionItemRepository.GetInvoicesAsync())?.ToList();
+            StockIssueConfirmations = (await productionItemRepository.GetCIsAsync())?.ToList();
 
             var notification = (string)TempData["Notification"];
             if (notification != null)
