@@ -1,0 +1,109 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.Board.Production.OwnPeriodOfTimeModel
+@using EnterpriseManagementApp.Data
+@using Microsoft.EntityFrameworkCore
+@inject EmaDbContext emaDbContext
+@{
+    ViewData["Title"] = "Production status";
+    var todayOnlyDay = DateTime.Now.Date.ToString("dd/MM/yyyy");
+    var lastMonthOnlyDay = DateTime.Now.Date.AddDays(-7).ToString("dd/MM/yyyy");
+}
+    @if(Model.OwnPeriodQuery == null)
+    {
+        <div class="bg-light bg-opacity-10 py-2 mb-2">
+            <div class="container text-center">
+                <h1>Set your own time period</h1>
+            </div>
+        </div>
+        <partial name="_Notification"></partial>
+        <div class="container text-center mx-auto" style="width: 50%;">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label class="form-label">Start date</label>
+                            <input type="date" class="form-control" name="StartDate" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">End date</label>
+                            <input type="date" class="form-control" name="EndDate"/>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-primary" style="width: 120px;">Check status</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+    else if (Model.OwnPeriodQuery != null && Model.OwnPeriodQuery.Any())
+    {
+        <div class="bg-light bg-opacity-10 py-2 mb-2">
+            <div class="container text-center">
+                <h1>Production status for @Model.StartDate.Date.ToString("dd/MM/yyyy") - @Model.EndDate.Date.ToString("dd/MM/yyyy")</h1>
+            </div>
+        </div>
+    <partial name="_Notification"></partial>
+        <div class="container text-center mx-auto" style="width: 50%;">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Type</td>
+                        <td>Quantity (pallets)</td>
+                        <td>Quantity (pcs)</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var results = Model.OwnPeriodQuery
+                        .Select(x => new
+                        {
+                            TypeId = x.Type.Id,
+                            TypeName = x.Type.Name +
+                        "/" + x.Type.Diameter +
+                        "/" + x.Type.Length +
+                        "/" + x.Type.WallThickness +
+                        "/" + x.Type.Class,
+                            QuantityPallets = x.QuantityPallets,
+                            QuantityPCS = x.QuantityPCS,
+                        })
+                        .GroupBy(x => new
+                        {
+                            x.TypeId,
+                            x.TypeName
+                        })
+                        .Select(x => new
+                        {
+                            TypeId = x.Key.TypeId,
+                            TypeName = x.Key.TypeName,
+                            QuantityPallets = x.Sum(p => p.QuantityPallets),
+                            QuantityPCS = x.Sum(p => p.QuantityPCS),
+                        }).ToList();
+
+                        int number = 1;
+                    }
+
+                    @foreach (var element in results)
+                    {
+                        <tr>
+                            <td>@number.</td>
+                            <td>@element.TypeName</td>
+                            <td>@element.QuantityPallets</td>
+                            <td>@element.QuantityPCS</td>
+                        </tr>
+                        number += 1;
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="container text-center pt-5">
+            <p>
+                There are no products to show, are you type a correct data?
+            </p>
+            <a class="link-dark" href="/Board/Production/OwnPeriodOfTime">Click here to try again. </a>
+        </div>
+    }

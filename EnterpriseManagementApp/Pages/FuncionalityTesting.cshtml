@@ -1,6 +1,7 @@
 ﻿@page
 @model EnterpriseManagementApp.Pages.FuncionalityTestingModel
 @{
+    ViewData["Title"] = "Admin testing page";
 }
 <div class="">
     <div class="row mb-4 text-center">
@@ -50,11 +51,11 @@
         </div>
         <div class="col-lg text-center">
             <h2 class="mb-3">Board</h2>
-            <a href="#" style="min-width: 200px;" class="btn btn-primary mb-3 p-3">Empty button</a><br />
-            <a href="#" style="min-width: 200px;" class="btn btn-primary mb-3 p-3">Empty button</a><br />
-            <a href="#" style="min-width: 200px;" class="btn btn-primary mb-3 p-3">Empty button</a><br />
-            <a href="#" style="min-width: 200px;" class="btn btn-primary mb-3 p-3">Empty button</a><br />
-            <a href="#" style="min-width: 200px;" class="btn btn-primary mb-3 p-3">Empty button</a><br />
+            <a href="/Board/Production/Status" style="min-width: 200px;" class="btn btn-danger mb-3 p-3">Production status (today)</a><br />
+            <a href="/Board/Production/StatusYesterday" style="min-width: 200px;" class="btn btn-danger mb-3 p-3">Production status (yesterday)</a><br />
+            <a href="/Board/Production/StatusLastWeek" style="min-width: 200px;" class="btn btn-danger mb-3 p-3">Production status (last week)</a><br />
+            <a href="/Board/Production/StatusLastMonth" style="min-width: 200px;" class="btn btn-danger mb-3 p-3">Production status (last month)</a><br />
+            <a href="/Board/Production/OwnPeriodOfTime" style="min-width: 200px;" class="btn btn-danger mb-3 p-3">Production status (own time)</a><br />
         </div>
         <div class="col-lg text-center">
             <h2 class="mb-3">User</h2>

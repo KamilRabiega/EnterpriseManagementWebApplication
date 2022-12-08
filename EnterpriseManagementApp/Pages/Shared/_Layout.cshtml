@@ -116,7 +116,60 @@
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Board"))
                         {
-
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownBoard">
+                                    Production status
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Production/Status">
+                                            Production status (today)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Production/StatusYesterday">
+                                            Production status (yesterday)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Production/StatusLastWeek">
+                                            Production status (last week)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Production/StatusLastMonth">
+                                            Production status (last month)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Production/OwnPeriodOfTime">
+                                            Production status (set own period time)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownBoard">
+                                    Magazine status
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="#">
+                                            FirstOption
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="#">
+                                            SecondOption
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="">
+                                            NextOption
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         }
                         else
                         {
