@@ -5,7 +5,7 @@
 }
 <div class="bg-light bg-opacity-10 py-2 mb-2">
     <div class="container text-center">
-        <h1>All already producted items</h1>
+        <h1>All products picked up by magazine</h1>
     </div>
 </div>
 
@@ -14,7 +14,7 @@
 
 @if (Model.ProductionItems != null && Model.ProductionItems.Any())
 {
-    <div class="container" style="width: 75%;">
+    <div class=" container-fluid text-center" style="width: 75%;">
         <table class="table text-center">
             <thead>
                 <tr>
@@ -24,24 +24,24 @@
                     <td>Quantity pallets</td>
                     <td>Production date</td>
                     <td>Is ready</td>
-                    <td>More Details</td>
+                    <td>In a magazine</td>
+                    <td>Pick up date</td>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model.ProductionItems)
                 {
-                    if (item.ReceivedByMagazine == false || item.ReceivedByMagazine == true)
+                    if(item.ReceivedByMagazine == true)
                     {
                     <tr>
                         <td>@item.Id</td>
                         <td>@item.Type.Name @item.Type.Diameter/@item.Type.Length/@item.Type.WallThickness/@item.Type.Class</td>
-                        <td>@item.Hall.Value</td>
+                        <td>@item.Hall.ShortValue</td>
                         <td>@item.QuantityPallets</td>
                         <td>@item.ProductionDate</td>
                         <td>@item.ReadyToPickUp</td>
-                        <td>
-                            <a class="btn btn-primary" href="/Production/Products/Edit/@item.Id">Show</a>
-                        </td>
+                        <td>@item.ReceivedByMagazine</td>
+                        <td>@item.MagPickupDate</td>
                     </tr>
                     }
                 }

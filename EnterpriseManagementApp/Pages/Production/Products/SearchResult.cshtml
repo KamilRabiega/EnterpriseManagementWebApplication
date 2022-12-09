@@ -12,10 +12,15 @@
 
 <partial name="_Notification">
 
-@if (Model.ProductionItem != null)
+@if (Model.ProductionItem != null && Model.ProductionItem.ReceivedByMagazine == false)
 {
     var item = Model.ProductionItem;
     <div class="container" style="width: 75%;">
+        <div class="text-center">
+            <p style="font-size: 20px;">
+                This product is still in production department.
+            </p>
+        </div>
         <table class="table text-center">
             <thead>
                 <tr>
@@ -42,15 +47,24 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-}
+        </div>
+    }
+    else if (Model.ProductionItem != null && Model.ProductionItem.ReceivedByMagazine == true)
+    {
+        <div class="container text-center pt-5">
+            <p style="font-size: 20px;">
+                This product has been picked up by the magazine department, 
+                <a href="/Production/Products/Search" class="link-dark">search for another product.</a>
+            </p>
+        </div>
+    }
+
 else
 {
     <div class="container text-center pt-5">
         <p style="font-size: 20px;">
             There are no products with that identificator, 
             <a href="/Production/Products/Search" class="link-dark">search again</a>
-        </p>
-            
+        </p>   
     </div>
 }

@@ -3,7 +3,7 @@
     "EnterpriseManagementApp": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "FuncionalityTesting",
+      "launchUrl": "Index",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

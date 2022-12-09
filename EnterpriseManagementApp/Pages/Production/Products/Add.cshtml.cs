@@ -64,7 +64,7 @@ namespace EnterpriseManagementApp.Pages.Production.Products
 
             TempData["Notification"] = JsonSerializer.Serialize(notification);
 
-            return RedirectToPage("/Production/Products/List");
+            return RedirectToPage("/Production/Products/ListAll");
         }
     }
 }

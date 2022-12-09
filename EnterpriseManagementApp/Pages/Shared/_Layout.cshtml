@@ -77,17 +77,30 @@
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-page="/Production/Products/Add">Add new product</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Production/Products/List">Show all products</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownBoard">
+                                    Show products
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Production/Products/ListAll">
+                                            Show all products
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Production/Products/List">
+                                            Show picked up by magazine
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Production/Products/ListUnpickedUp">
+                                            Show unpicked up by magazine
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-page="/Production/Products/Search">Search for product</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="#">Option</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="#">Option</a>
                             </li>
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Magazine"))
