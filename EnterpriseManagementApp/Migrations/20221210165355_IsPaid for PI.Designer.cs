@@ -4,6 +4,7 @@ using EnterpriseManagementApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnterpriseManagementApp.Migrations
 {
     [DbContext(typeof(EmaDbContext))]
-    partial class EmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221210165355_IsPaid for PI")]
+    partial class IsPaidforPI
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,6 +122,9 @@ namespace EnterpriseManagementApp.Migrations
                     b.Property<int>("HallId")
                         .HasColumnType("int");
 
+                    b.Property<bool?>("IsPaid")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("MagPickupDate")
                         .HasColumnType("datetime2");
 
@@ -196,9 +201,6 @@ namespace EnterpriseManagementApp.Migrations
 
                     b.Property<int>("Gross")
                         .HasColumnType("int");
-
-                    b.Property<bool?>("IsPaid")
-                        .HasColumnType("bit");
 
                     b.Property<int>("Net")
                         .HasColumnType("int");

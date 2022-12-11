@@ -16,5 +16,6 @@
         public Guid? ProductionItemId { get; set; }
         public DateTime DateOfPayment { get; set; }
         public DateTime CIDate { get; set; }
+        public bool? IsPaid { get; set; }
     }
 }

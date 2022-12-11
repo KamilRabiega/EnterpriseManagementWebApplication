@@ -30,6 +30,7 @@
                 <tbody>
                     @{
                         var results = emaDbContext.ProductionItems   
+                                .Where(r => r.ReceivedByMagazine == true)
                                 .Select(x => new 
                                 {
                                     TypeId = x.Type.Id,

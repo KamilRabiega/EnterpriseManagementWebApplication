@@ -1,11 +1,11 @@
 ﻿@page
-@model EnterpriseManagementApp.Pages.Finance.Confirmations.ListStockIssueConfirmationModel
+@model EnterpriseManagementApp.Pages.Finance.Confirmations.CiConfirmedPaymentsListModel
 @{
-    ViewData["Title"] = "Waiting CIs";
+    ViewData["Title"] = "Ci confirmed payments list";
 }
 <div class="bg-light bg-opacity-10 py-2 mb-2">
     <div class="container text-center">
-        <h1>Waiting CIs</h1>
+        <h1>List of paid CIs</h1>
     </div>
 </div>
 
@@ -23,14 +23,14 @@
                         <td>Company</td>
                         <td>Price net</td>
                         <td>Invoice date</td>
-                        <td>Ready to release</td>
-                        <td>Action</td>
+                        <td>Payment date</td>
+                        <td>Payment status</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.StockIssueConfirmations)
                     {
-                        if(item.IsPaid == false)
+                        if(item.IsPaid == true)
                         {
                         <tr>
                             <td>@item.Id</td>
@@ -38,14 +38,10 @@
                             <td>@item.Company.NameOfCompany</td>
                             <td>@item.Net</td>
                             <td>@item.CIDate</td>
-                            <td>@item.ProductionItem.ReadyToRelease</td>
-                            <td>
-                                <a href="/Finance/Confirmations/ViewStockIssueConfirmation/@item.Id" class="btn btn-primary">View</a>
-                                <a href="/Finance/Confirmations/EditStockIssueConfirmation/@item.Id" class="btn btn-primary">Edit</a>
-                            </td>
+                            <td>@item.DateOfPayment</td>
+                            <td><p>Paid</p></td>
                         </tr>
                         }
-                        
                     }
                 </tbody>
             </table>

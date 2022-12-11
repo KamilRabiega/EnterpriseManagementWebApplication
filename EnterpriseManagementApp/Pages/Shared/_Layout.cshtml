@@ -124,7 +124,13 @@
                                 <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/AddStockIssueConfirmation">New Stock Issue Confirmation</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/ListStockIssueConfirmation">List Stock Issue Confirmations</a>
+                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/ListStockIssueConfirmation">Waiting CIs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/ListOfReleasedCIs">Confirm payments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/CiConfirmedPaymentsList">List of paid CIs</a>
                             </li>
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Board"))
@@ -167,18 +173,35 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                                     <li>
-                                        <a class="dropdown-item text-dark" href="#">
-                                            FirstOption
+                                        <a class="dropdown-item text-dark" href="/Board/Magazine/MagazineStatusAll">
+                                            Products in magazine (All)
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-dark" href="#">
-                                            SecondOption
+                                        <a class="dropdown-item text-dark" href="/Board/Magazine/MagazineStatus">
+                                            Products in magazine (without assigned to release)
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item text-dark" href="">
-                                            NextOption
+                                        <a class="dropdown-item text-dark" href="/Board/Magazine/StockLevelAll">
+                                            Stock level (All)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Magazine/StockLevel">
+                                            Stock level (without assigned to release)
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownBoard">
+                                    Finances
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Finances/Revenues">
+                                            Revenues
                                         </a>
                                     </li>
                                 </ul>

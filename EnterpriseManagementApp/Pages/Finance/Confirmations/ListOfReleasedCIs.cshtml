@@ -1,11 +1,11 @@
 ﻿@page
-@model EnterpriseManagementApp.Pages.Finance.Confirmations.ListStockIssueConfirmationModel
+@model EnterpriseManagementApp.Pages.Finance.Confirmations.ListOfReleasedCIsModel
 @{
-    ViewData["Title"] = "Waiting CIs";
+    ViewData["Title"] = "List of released CI's";
 }
-<div class="bg-light bg-opacity-10 py-2 mb-2">
+<div class="bg-light bg-opacity-10 py-2 mb-4">
     <div class="container text-center">
-        <h1>Waiting CIs</h1>
+        <h1>Confirmation payments page</h1>
     </div>
 </div>
 
@@ -18,34 +18,32 @@
             <table class="table text-center">
                 <thead>
                     <tr>
-                        <td>Id</td>
+                        <td>StockIssueConfirmation ID</td>
                         <td>Invoice number</td>
+                        <td>Product ID</td>
                         <td>Company</td>
                         <td>Price net</td>
-                        <td>Invoice date</td>
-                        <td>Ready to release</td>
+                        <td>Release date</td>
                         <td>Action</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model.StockIssueConfirmations)
                     {
-                        if(item.IsPaid == false)
+                        if(item.ProductionItem.Released == true && item.IsPaid == false)
                         {
-                        <tr>
+                            <tr>
                             <td>@item.Id</td>
                             <td>@item.CINumber</td>
+                            <td>@item.ProductionItemId</td>
                             <td>@item.Company.NameOfCompany</td>
                             <td>@item.Net</td>
-                            <td>@item.CIDate</td>
-                            <td>@item.ProductionItem.ReadyToRelease</td>
+                            <td>@item.ProductionItem.ReleaseDate</td>
                             <td>
-                                <a href="/Finance/Confirmations/ViewStockIssueConfirmation/@item.Id" class="btn btn-primary">View</a>
-                                <a href="/Finance/Confirmations/EditStockIssueConfirmation/@item.Id" class="btn btn-primary">Edit</a>
+                                <a href="/Finance/Confirmations/ConfirmPayment/@item.Id" class="btn btn-primary">Confirm payment</a>
                             </td>
                         </tr>
                         }
-                        
                     }
                 </tbody>
             </table>
