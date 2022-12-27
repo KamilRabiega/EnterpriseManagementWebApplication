@@ -4,6 +4,7 @@ using EnterpriseManagementApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EnterpriseManagementApp.Migrations
 {
     [DbContext(typeof(EmaDbContext))]
-    partial class EmaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221213153501_Costs table")]
+    partial class Coststable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,23 +47,23 @@ namespace EnterpriseManagementApp.Migrations
 
             modelBuilder.Entity("EnterpriseManagementApp.Entities.Cost", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"), 1L, 1);
 
-                    b.Property<decimal>("CostValue")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<int>("CostValue")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("PaymentDate")
+                    b.Property<DateTime>("PaymentDay")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("ID");
 
                     b.ToTable("Costs");
                 });

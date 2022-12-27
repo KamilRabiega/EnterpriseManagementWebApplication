@@ -1,0 +1,204 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.Board.Finances.SetIncomeDatesModel
+@using EnterpriseManagementApp.Data
+@using Microsoft.EntityFrameworkCore
+@inject EmaDbContext emaDbContext
+@{
+    ViewData["Title"] = "Set month to display income";
+}
+@if (Model.CostsPeriodQuery == null)
+{
+    <div class="bg-light bg-opacity-10 py-2 mb-2">
+        <div class="container text-center">
+            <h1>Select month to display income</h1>
+        </div>
+    </div>
+    <partial name="_Notification"></partial>
+    <div class="container text-center mx-auto" style="width: 50%;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Select income month</label>
+                        <input type="month" class="form-control" name="IncomeMonth" />
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" style="width: 150px;">Check income</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+else if (Model.CostsPeriodQuery != null && Model.CostsPeriodQuery.Any() && Model.CiPeriodQuery != null && Model.CiPeriodQuery.Any())
+{
+    <div class="bg-light bg-opacity-10 py-2 mb-2">
+        <div class="container text-center">
+            <h2>Status for @Model.IncomeMonth.ToString("MM/yyyy")</h2>
+        </div>
+    </div>
+    <partial name="_Notification"></partial>
+    <div class="bg-light bg-opacity-10 py-2 mb-2">
+        <div class="container text-center">
+            <h5>Costs for @Model.IncomeMonth.ToString("MM/yyyy")</h5>
+        </div>
+    </div>
+    <div class="container text-center mx-auto" style="width: 50%;">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Value</td>
+                    <td>Date</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var results = Model.CostsPeriodQuery
+                    .Select(x => new
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Value = x.CostValue,
+                        Date = x.PaymentDate
+                    }).ToList();
+
+                    decimal costs = 0;
+                }
+
+                @foreach (var element in results)
+                {
+                    <tr>
+                        <td>@element.Id</td>
+                        <td>@element.Name</td>
+                        <td>@element.Value</td>
+                        <td>@element.Date</td>
+                    </tr>
+                    costs = costs + element.Value;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-5" style="margin: 0 auto; width: 50%;">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <td>Total costs</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@costs</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bg-light bg-opacity-10 py-2 mb-2">
+        <div class="container text-center">
+            <h5>Revenues for @Model.IncomeMonth.ToString("MM/yyyy")</h5>
+        </div>
+    </div>
+    <div class="container text-center mx-auto" style="width: 50%;">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Invoice number</td>
+                    <td>Company</td>
+                    <td>Price net</td>
+                    <td>Price gross</td>
+                    <td>Tax class</td>
+                    <td>Invoice date</td>
+                    <td>Is paid</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var ciResults = Model.CiPeriodQuery
+                    .Where(x => x.IsPaid == true)
+                    .Select(x => new
+                    {
+                        InvoiceNumber = x.CINumber,
+                        Company = x.CompanyId,
+                        Net = x.Net,
+                        Gross = x.Gross,
+                        TaxClass = x.TaxClassId,
+                        InvoiceDate = x.CIDate,
+                        IsPaid = x.IsPaid
+                    }).ToList();
+
+                    int number = 1;
+                    var revenuesNet = 0;
+                    var revenuesGross = 0;
+                }
+
+                @foreach (var element in ciResults)
+                {
+                    <tr>
+                        <td>@number.</td>
+                        <td>@element.InvoiceNumber</td>
+                        <td>@element.Company</td>
+                        <td>@element.Net</td>
+                        <td>@element.Gross</td>
+                        <td>@element.TaxClass</td>
+                        <td>@element.InvoiceDate</td>
+                        <td>@element.IsPaid</td>
+                    </tr>
+                    number += 1;
+                    revenuesNet = revenuesNet + element.Net;
+                    revenuesGross = revenuesGross + element.Gross;
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container mt-5" style="margin: 0 auto; width: 50%;">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <td>Total revenues (net)</td>
+                    <td>Total revenues (gross)</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@revenuesNet</td>
+                    <td>@revenuesGross</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="bg-light bg-opacity-10 py-2 mb-2">
+        <div class="container text-center">
+            <h3>Total income for @Model.IncomeMonth.ToString("MM/yyyy")</h3>
+        </div>
+    </div>
+
+    var totalIncomeNet = revenuesNet - costs;
+    var totalIncomeGross = revenuesGross - costs;
+    <div class="container mt-5" style="margin: 0 auto; width: 50%;">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <td>Total income (net)</td>
+                    <td>Total income (gross)</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>@totalIncomeNet</td>
+                    <td>@totalIncomeGross</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+}
+else
+{
+    <p></p>
+    <partial name="_Notification"></partial>
+    <div class="container text-center pt-5">
+        <a class="link-dark" href="/Board/Finances/SetIncomeDates">Click here to try again. </a>
+    </div>
+}

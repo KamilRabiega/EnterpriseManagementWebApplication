@@ -1,7 +1,7 @@
 ﻿@page
 @model EnterpriseManagementApp.Pages.Board.Finances.RevenuesModel
 @{
-    ViewData["Title"] = "Waiting CIs";
+    ViewData["Title"] = "All revenue";
 }
 <div class="bg-light bg-opacity-10 py-2 mb-2">
     <div class="container text-center">
@@ -32,6 +32,7 @@
                     @{
                         var revenuesNet = 0;
                         var revenuesGross = 0;
+                        var dateNow = DateTime.Now;
                     }
                     @foreach (var item in Model.StockIssueConfirmations)
                     {

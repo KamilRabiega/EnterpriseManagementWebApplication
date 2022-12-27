@@ -1,0 +1,38 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.Finance.Costs.AddModel
+@{
+    ViewData["Title"] = "Add new cost";
+}
+
+<div class="bg-light bg-opacity-10 py-2 mb-2">
+    <div class="container text-center">
+        <h1>Add new cost</h1>
+    </div>
+</div>
+
+<div>
+    <div class="container w-50">
+        <form method="post" class="border border-2 border-secondary p-4  bg-secondary bg-opacity-10">
+            @*Name of cost*@
+            <div class="mb-3">
+                <label for="costName" class="form-label">Cost name</label>
+                <input type="text" class="form-control" id="costName" asp-for="AddCostRequest.Name">
+            </div>
+            @*Cost value*@
+            <div class="mb-3">
+                <label for="costValue" class="form-label">Cost value</label>
+                <input type="number" step="0.01" class="form-control" id="costValue" asp-for="AddCostRequest.CostValue">
+            </div>
+            @*Date of payment*@
+            <div class="mb-3">
+                <label for="paymentDate" class="form-label">Payment date</label>
+                <input type="date" class="form-control" id="paymentDate" asp-for="AddCostRequest.PaymentDate">
+            </div>
+            <div class="mb-3">
+                <button class="btn btn-primary" type="submit">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

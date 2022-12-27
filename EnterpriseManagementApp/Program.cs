@@ -47,7 +47,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath= "/AccessDenied";
 });
 
-builder.Services.AddScoped<IProductionItemRepository, ProductionItemRepository>(); //Inject the implementation of IProductionItemRepository
+builder.Services.AddScoped<IProductionItemRepository, ProductionItemRepository>();
+builder.Services.AddScoped<ICostRepository, CostRepository>();
 
 var app = builder.Build();
 

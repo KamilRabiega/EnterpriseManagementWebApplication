@@ -1,0 +1,105 @@
+﻿@page
+@model EnterpriseManagementApp.Pages.Board.Finances.SetCostsDatesModel
+@using EnterpriseManagementApp.Data
+@using Microsoft.EntityFrameworkCore
+@inject EmaDbContext emaDbContext
+@{
+    ViewData["Title"] = "Set your own period of time for revenue";
+}
+@if (Model.OwnPeriodQuery == null)
+{
+    <div class="bg-light bg-opacity-10 py-2 mb-2">
+        <div class="container text-center">
+            <h1>Set your own time period</h1>
+        </div>
+    </div>
+    <partial name="_Notification"></partial>
+    <div class="container text-center mx-auto" style="width: 50%;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-6">
+                <form method="post">
+                    <div class="mb-3">
+                        <label class="form-label">Start date</label>
+                        <input type="date" class="form-control" name="StartDate" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">End date</label>
+                        <input type="date" class="form-control" name="EndDate" />
+                    </div>
+                    <div class="mb-3">
+                        <button class="btn btn-primary" style="width: 120px;">Check status</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+}
+else if (Model.OwnPeriodQuery != null && Model.OwnPeriodQuery.Any())
+{
+    <div class="bg-light bg-opacity-10 py-2 mb-2">
+        <div class="container text-center">
+            <h1>Production status for @Model.StartDate.Date.ToString("dd/MM/yyyy") - @Model.EndDate.Date.ToString("dd/MM/yyyy")</h1>
+        </div>
+    </div>
+    <partial name="_Notification"></partial>
+    <div class="container text-center mx-auto" style="width: 50%;">
+        <table class="table text-center">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Value</td>
+                    <td>Date</td>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var results = Model.OwnPeriodQuery
+                    .Select(x => new
+                    {
+                        Id = x.Id,
+                        Name = x.Name,
+                        Value = x.CostValue,
+                        Date = x.PaymentDate
+                    }).ToList();
+
+                    decimal costs = 0;
+                }
+
+                @foreach (var element in results)
+                {
+                    <tr>
+                        <td>@element.Id</td>
+                        <td>@element.Name</td>
+                        <td>@element.Value</td>
+                        <td>@element.Date</td>
+                    </tr>
+                    costs = costs + element.Value;
+                }
+            </tbody>
+        </table>
+        <div class="container mt-5" style="margin: 0 auto; width: 75%;">
+            <table class="table text-center">
+                <thead>
+                    <tr>
+                        <td>Costs</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>@costs</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container text-center pt-5">
+        <p>
+            There are no products to show, are you type a correct data?
+        </p>
+        <a class="link-dark" href="/Board/Finances/SetCostsDates">Click here to try again. </a>
+    </div>
+}

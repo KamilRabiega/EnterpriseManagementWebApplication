@@ -120,17 +120,56 @@
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Finance"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/AddStockIssueConfirmation">New Stock Issue Confirmation</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownBoard">
+                                    Stock Issue Confirmations
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-page="/Finance/Confirmations/AddStockIssueConfirmation">
+                                            New Stock Issue Confirmation
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-page="/Finance/Confirmations/ListStockIssueConfirmation">
+                                            Waiting CIs
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/ListStockIssueConfirmation">Waiting CIs</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownBoard">
+                                    Payments
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-page="/Finance/Confirmations/ListOfReleasedCIs">
+                                            Confirm payments
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-page="/Finance/Confirmations/CiConfirmedPaymentsList">
+                                            List of paid CIs
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/ListOfReleasedCIs">Confirm payments</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-page="/Finance/Confirmations/CiConfirmedPaymentsList">List of paid CIs</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="navbarDropdownBoard">
+                                    Costs
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-page="/Finance/Costs/Add">
+                                            Add cost
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" asp-page="/Finance/Costs/ListCosts">
+                                            List of costs
+                                        </a>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else if (signInManager.IsSignedIn(User) && User.IsInRole("Board"))
@@ -200,8 +239,28 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownAdmin">
                                     <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Finances/SetRevenuesDates">
+                                            Set revenue time period
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item text-dark" href="/Board/Finances/Revenues">
-                                            Revenues
+                                            All revenue
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Finances/SetCostsDates">
+                                            Set costs time period
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Finances/Costs">
+                                            All costs
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item text-dark" href="/Board/Finances/SetIncomeDates">
+                                            Select month to display income
                                         </a>
                                     </li>
                                 </ul>

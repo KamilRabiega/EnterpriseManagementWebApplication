@@ -17,6 +17,7 @@ namespace EnterpriseManagementApp.Data
         public DbSet<Company> Companies { get; set; }
         public DbSet<StockIssueConfirmation> StockIssueConfirmations { get; set; }
         public DbSet<Tax> Taxes { get; set; }
+        public DbSet<Cost> Costs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
