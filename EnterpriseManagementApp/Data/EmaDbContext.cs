@@ -23,22 +23,20 @@ namespace EnterpriseManagementApp.Data
         {
             modelBuilder.Entity<ProductionItem>(eb =>
             {
-                //One to many relation beetween Type and ProductionItem tables
+                //One to many relation
+                //beetween Type and ProductionItem tables
                 eb.HasOne(p => p.Type)
                 .WithMany(t => t.ProductionItem)
                 .HasForeignKey(p => p.TypeId);
 
-                //One to many relation beetween Material and ProductionItem tables
                 eb.HasOne(p => p.Material)
                 .WithMany(m => m.ProductionItem)
                 .HasForeignKey(p => p.MaterialId);
 
-                //One to many relation beetween Hall and ProductionItem tables
                 eb.HasOne(p => p.Hall)
                 .WithMany(h => h.ProductionItem)
                 .HasForeignKey(p => p.HallId);
 
-                //One to many relation beetween Foreman and ProductionItem tables
                 eb.HasOne(p => p.Foreman)
                 .WithMany(f => f.ProductionItem)
                 .HasForeignKey(p => p.ForemanId);

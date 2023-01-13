@@ -81,7 +81,7 @@
                         <option selected value="">Select product..</option>
                         @foreach (var item in Model.ProductionItems)
                         {
-                            if (item.ReadyToRelease != true)
+                            if (item.ReadyToRelease != true && item.ReceivedByMagazine == true)
                             {
                                 <option value="@item.Id">@item.Type.Name @item.Type.Diameter/@item.Type.Length/@item.Type.WallThickness/@item.Type.Class</option>
                             }
